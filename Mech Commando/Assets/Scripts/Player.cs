@@ -24,6 +24,9 @@ public class Player : MovingEntity
     public delegate void UpdateEnergyEvent(int e, int maxE);
     public static event UpdateEnergyEvent onEnergyUpdate;
 
+    public delegate void PrimaryFire();
+    public static event PrimaryFire onPrimaryFire;
+
     //Energy
     float EnergyRecoverTimer;
     [SerializeField]
@@ -58,8 +61,6 @@ public class Player : MovingEntity
     void Update()
     {
         recoverEnergy();
-
-
 
     }
 
