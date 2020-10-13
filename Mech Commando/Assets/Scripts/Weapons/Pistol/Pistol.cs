@@ -6,13 +6,16 @@ public class Pistol : MainWeapon, IMainWeapon
 {
     [SerializeField]
     GameObject laser;
-    Transform ShootPlace;
+    Transform[] ShootPlaces;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        ShootPlace = gameObject.transform.Find("ShootPlace");
+        ShootPlaces = new Transform[3];
+        ShootPlaces[0] = gameObject.transform.Find("ShootPlace1");
+        ShootPlaces[1] = gameObject.transform.Find("ShootPlace2");
+        ShootPlaces[2] = gameObject.transform.Find("ShootPlace3");
 
     }
 
@@ -55,10 +58,15 @@ public class Pistol : MainWeapon, IMainWeapon
            // Debug.Log($"Primary Weapon Firing: Primary Fire");
             fireDelayTimer = 0;
             canFirePrimary = false;
-            GameObject a = Instantiate(laser, ShootPlace.position, Quaternion.identity);
-            Laser l = a.GetComponent<Laser>();
-            l.start = ShootPlace.position;
-            l.direction = transform.forward;
+
+            foreach (Transform s in ShootPlaces)
+            {
+                GameObject a = Instantiate(laser, s.position, Quaternion.identity);
+                Laser l = a.GetComponent<Laser>();
+                l.start = s.position;
+                l.direction = transform.forward;
+                l.damage = baseDamage;
+            }
         }
     }
 

@@ -5,9 +5,10 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     MainWeapon currentPrimary;
-    int currentPrimaryAmmo;
+    public MainWeapon GetCurrentPrimary() => currentPrimary;
 
-
+    public int currentPrimaryAmmo;
+        
 
     void awake()
     {
@@ -56,6 +57,14 @@ public class WeaponManager : MonoBehaviour
 
     void SpecialFire()
     {
+
+    }
+
+
+    public void receiveAmmo(int ammount)
+    {
+        if (currentPrimaryAmmo + ammount < currentPrimary.GetMaxAmmo()) currentPrimaryAmmo += ammount;
+        else currentPrimaryAmmo = currentPrimary.GetMaxAmmo();
 
     }
 }

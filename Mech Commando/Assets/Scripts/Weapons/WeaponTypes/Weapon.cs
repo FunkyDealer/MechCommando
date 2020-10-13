@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    protected bool isInfinite; //if the ammo is infinite or not
-    protected int currentAmmo;
+
+
+    [SerializeField]
     protected int maxAmmo;
+    [SerializeField]
     protected int baseDamage;
     protected int range;
     protected int buyingCost;
     protected bool isAvailable;
     protected string description;
+    [SerializeField]
     protected string simpleName; //Simple name that can be quickly read, ex: Pistol
+    [SerializeField]
     protected string fullName; //Weapon's full name
 
-
+    public int GetMaxAmmo() => maxAmmo;
 
     // Start is called before the first frame update
     void Start()

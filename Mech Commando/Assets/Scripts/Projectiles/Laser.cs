@@ -15,6 +15,15 @@ public class Laser : HitScanProjectile
     [SerializeField]
     private float speed;
 
+    float laserLenght;
+    Entity hitEntity;
+
+
+    void Awake()
+    {
+        hitEntity = null;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,9 +45,13 @@ public class Laser : HitScanProjectile
 
     void LateUpdate()
     {
-        start += direction * speed * Time.deltaTime;
+        Vector3 laserDir = end - start;
+        laserDir.Normalize();
+        start += laserDir * speed * Time.deltaTime;        
+        laserLenght = laserDir.magnitude;
+        //if (laserLenght < 1) Destroy(gameObject);
         lr.SetPosition(0, start);
-
+        
 
     }
 
@@ -51,16 +64,31 @@ public class Laser : HitScanProjectile
         {
             if (hit.collider)
             {
-                lr.SetPosition(1, hit.point);
+                end = hit.point;
+                calcEntity(hit);
             }
 
         }
         else
         {
-            Debug.Log($"End Position: {direction * 10}");
-            lr.SetPosition(1,start + direction * maxSize);
+           // Debug.Log($"End Position: {direction * 10}");
+            end = start + direction * maxSize;
         }
 
+        lr.SetPosition(1, end);
+    }
+
+
+    void calcEntity(RaycastHit hit)
+    {
+        hitEntity = hit.transform.gameObject.GetComponent<Entity>();
+        if (hitEntity != null) damageEntity();
+
+    }
+
+    void damageEntity()
+    {
+        hitEntity.ReceiveDamage(damage);
 
     }
 

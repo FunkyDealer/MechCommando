@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Player : MovingEntity
 {
-
-    int armor;
+    int currentArmor;
+    [SerializeField]
     int maxArmor;
+    
     public int currentEnergy;
-    readonly int maxEnergy = 100;
-    public int healthPacksQt;
+    [SerializeField]
+    int maxEnergy;
+    protected int healthPacksQt;
     public readonly int healthPacksQtMax = 3;
     bool alive;
     public bool inControl;
-
 
     public delegate void PlayerDeath();
     public static event PlayerDeath onDeath;
@@ -23,6 +24,9 @@ public class Player : MovingEntity
 
     public delegate void UpdateEnergyEvent(int e, int maxE);
     public static event UpdateEnergyEvent onEnergyUpdate;
+
+    public delegate void UpdateArmorEvent(int a, int maxA);
+    public static event UpdateArmorEvent onArmorUpdate;
 
     public delegate void PrimaryFire();
     public static event PrimaryFire onPrimaryFire;
@@ -36,16 +40,18 @@ public class Player : MovingEntity
     float EnergyRecoverDelay = 0.3f; //Time before energy starts recovering again
     float EnergyRecoverDelayTimer;
 
+    
+
     protected override void Awake()
     {
         alive = true;
-        maxHealth = 100;
         currentHealth = maxHealth;
         currentEnergy = maxEnergy;
         inControl = true;
         EnergyRecoverTimer = 0;
         canRecoverEnergy = true;
         EnergyRecoverTimer = 0;
+        currentArmor = 0;
     }
 
     // Start is called before the first frame update
@@ -54,6 +60,7 @@ public class Player : MovingEntity
 
         onHealthUpdate(currentHealth, maxHealth);
         onEnergyUpdate(currentEnergy, maxEnergy);
+        onArmorUpdate(currentArmor, maxArmor);
 
     }
 
@@ -65,8 +72,10 @@ public class Player : MovingEntity
     }
 
     public bool isAlive() => alive;
-    public int Armor() => armor;
-
+    public int CurrentArmor() => currentArmor;
+    public int MaxArmor() => maxArmor;
+  
+    
     public void spendEnergy(int newEnergy)
     {
         currentEnergy = newEnergy;
@@ -89,14 +98,12 @@ public class Player : MovingEntity
                     onEnergyUpdate(currentEnergy, maxEnergy);
                     EnergyRecoverTimer = 0;
                 }
-            }
-            else
+            } else
             {
                 if (EnergyRecoverDelayTimer < EnergyRecoverDelay) EnergyRecoverDelayTimer += Time.deltaTime;
                 else { canRecoverEnergy = true; }
             }
         }
-
     }
 
     public void updateHealth(int newHealth)
@@ -106,11 +113,23 @@ public class Player : MovingEntity
     }
 
 
+
+
     public override void die()
     {
 
         Debug.Log($"Player Died");
 
+    }
+
+    public void increaseHpak() => healthPacksQt++;
+
+    public void increaseArmor(int ammount)
+    {
+        if (currentArmor + ammount < maxArmor) currentArmor += ammount;
+        else currentArmor = maxArmor;
+
+        onArmorUpdate(currentArmor, maxArmor);
     }
 
 }

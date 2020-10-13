@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class MainWeapon : Weapon
 {
-    public int heatLevel;
-    public string countryOfOrigin;
-    public int accuracy;
-    public int rateOfFire;
-    public int recoil;
+    [SerializeField]
+    public bool isInfinite; //if the ammo is infinite or not
+
+    protected int currentHeatLevel;
+    protected int maxHeatLevel;
+    [SerializeField]
+    protected string countryOfOrigin;
+    protected int accuracy;
     //Secondary Fire
 
+    //Rate of Fire
     [SerializeField]
     protected float fireDelay;
     protected float fireDelayTimer;
