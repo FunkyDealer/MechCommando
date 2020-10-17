@@ -7,21 +7,16 @@ public class Laser : HitScanProjectile
     [SerializeField]
     private int maxSize;
     private LineRenderer lr;
-
+       
     [SerializeField]
-    private float lifeTime;
-    private float lifeTimer;
-
-    [SerializeField]
-    private float speed;
+    private float LaserSpeed;
 
     float laserLenght;
-    Entity hitEntity;
 
 
-    void Awake()
+    protected override void Awake()
     {
-        hitEntity = null;
+        base.Awake();
     }
 
     // Start is called before the first frame update
@@ -47,7 +42,7 @@ public class Laser : HitScanProjectile
     {
         Vector3 laserDir = end - start;
         laserDir.Normalize();
-        start += laserDir * speed * Time.deltaTime;        
+        start += laserDir * LaserSpeed * Time.deltaTime;        
         laserLenght = laserDir.magnitude;
         //if (laserLenght < 1) Destroy(gameObject);
         lr.SetPosition(0, start);
@@ -86,10 +81,6 @@ public class Laser : HitScanProjectile
 
     }
 
-    void damageEntity()
-    {
-        hitEntity.ReceiveDamage(damage);
 
-    }
 
 }

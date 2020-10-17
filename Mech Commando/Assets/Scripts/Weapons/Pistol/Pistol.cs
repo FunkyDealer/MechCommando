@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class Pistol : MainWeapon, IMainWeapon
 {
-    [SerializeField]
-    GameObject laser;
-    Transform[] ShootPlaces;
+
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        ShootPlaces = new Transform[3];
-        ShootPlaces[0] = gameObject.transform.Find("ShootPlace1");
-        ShootPlaces[1] = gameObject.transform.Find("ShootPlace2");
-        ShootPlaces[2] = gameObject.transform.Find("ShootPlace3");
 
     }
 
@@ -26,14 +20,12 @@ public class Pistol : MainWeapon, IMainWeapon
 
         if (!canFirePrimary && fireDelayTimer < fireDelay) fireDelayTimer += Time.deltaTime;
         else { canFirePrimary = true; }
-
-
+        
     }
 
-    public override void PrimaryFireStart()
+    public override void PrimaryFireStart(WeaponManager weaponManager)
     {
         PrimaryFire();
-
     }
 
     public override void PrimaryFireEnd()
@@ -41,7 +33,7 @@ public class Pistol : MainWeapon, IMainWeapon
 
     }
 
-    public override void SecondaryFireStart()
+    public override void SecondaryFireStart(WeaponManager weaponManager)
     {
         SecondaryFire();
     }
@@ -61,7 +53,7 @@ public class Pistol : MainWeapon, IMainWeapon
 
             foreach (Transform s in ShootPlaces)
             {
-                GameObject a = Instantiate(laser, s.position, Quaternion.identity);
+                GameObject a = Instantiate(projectile, s.position, Quaternion.identity);
                 Laser l = a.GetComponent<Laser>();
                 l.start = s.position;
                 l.direction = transform.forward;

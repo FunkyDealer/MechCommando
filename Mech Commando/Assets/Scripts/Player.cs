@@ -113,8 +113,6 @@ public class Player : MovingEntity
     }
 
 
-
-
     public override void die()
     {
 

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class KineticProjectile : Projectile
 {
+    protected Vector3 LaunchPoint;
+    public float velocity;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -11,8 +16,21 @@ public class KineticProjectile : Projectile
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        
+
+        if (lifeTimer < lifeTime) lifeTimer += Time.deltaTime;
+        else
+        {
+            Die();
+
+        }
+    }
+
+    protected virtual void Die()
+    {
+
+        Destroy(gameObject);
+
     }
 }

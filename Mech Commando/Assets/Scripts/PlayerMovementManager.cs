@@ -122,7 +122,6 @@ public class PlayerMovementManager : MonoBehaviour
     void LateUpdate() //Runs after all other update functions
     {
 
-
         if (dodging) //Dodging
         {
             Dodge();

@@ -50,9 +50,12 @@ public class PlayerCamera : MonoBehaviour
 
         //Debug.Log(rotArrayY);
 
-        if (rotArrayY > 89) rotArrayY = 89;
-        //Mathf.Clamp(rotArrayY, -90, 90);
-        else if (rotArrayY < -89) rotArrayY = -89;
+        //if (rotArrayY > 89) rotArrayY = 89;
+        //else if (rotArrayY < -89) rotArrayY = -89;
+
+        rotArrayY = Mathf.Clamp(rotArrayY, -90, 90);
+
+        
 
         //Adding up all the rotational input values from each array
 

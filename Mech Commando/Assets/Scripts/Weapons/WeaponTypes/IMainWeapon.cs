@@ -5,11 +5,11 @@ using UnityEngine;
 interface IMainWeapon
 {
     //For Pressing down Button
-    void PrimaryFireStart();
+    void PrimaryFireStart(WeaponManager weaponManager);
 
     void PrimaryFireEnd();
 
-    void SecondaryFireStart();
+    void SecondaryFireStart(WeaponManager weaponManager);
 
     void SecondaryFireEnd();
 

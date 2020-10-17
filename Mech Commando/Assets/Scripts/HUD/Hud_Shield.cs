@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Hud_Shield : MonoBehaviour
+public class Hud_Shield : Base_Hud
 {
     int Shield;
-    public string text;
-    Text textDisplay;
 
 
-    void Awake()
+
+    protected override void Awake()
     {
-        textDisplay = GetComponent<Text>();
-        Player.onArmorUpdate += getShield;
+        base.Awake();
+        Player.onArmorUpdate += GetShield;
     }
 
     // Start is called before the first frame update
@@ -24,7 +23,7 @@ public class Hud_Shield : MonoBehaviour
 
     void OnDestroy()
     {
-        Player.onEnergyUpdate -= getShield;
+        Player.onEnergyUpdate -= GetShield;
     }
 
     // Update is called once per frame
@@ -33,7 +32,7 @@ public class Hud_Shield : MonoBehaviour
 
     }
 
-    void getShield(int S, int maxShield)
+    void GetShield(int S, int maxShield)
     {
         Shield = S;
         textDisplay.text = $"{text}: {Shield}/{maxShield}";

@@ -9,7 +9,7 @@ public class Entity : MonoBehaviour
     protected int maxHealth;
 
     [SerializeField]
-    protected string name;
+    protected string entityName;
 
     protected virtual void Awake()
     {
@@ -36,7 +36,7 @@ public class Entity : MonoBehaviour
     {
         currentHealth -= damage;
         if (currentHealth < 0) Die();
-        Debug.Log($"{name} received {damage} damage!");
+        Debug.Log($"{entityName} received {damage} damage!");
     }
 
     public virtual void Die()

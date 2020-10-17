@@ -141,9 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe263325a877b74799fa10886095220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
-  start: {x: 0, y: 0, z: 0}
+  damage: 0
   direction: {x: 0, y: 0, z: 0}
-  maxSize: 1000
   lifeTime: 1
-  speed: 500
+  start: {x: 0, y: 0, z: 0}
+  maxSize: 1000
+  LaserSpeed: 500

@@ -6,7 +6,7 @@ public class HitScanProjectile : Projectile
 {
     public Vector3 start;
     protected Vector3 end;
-    public Vector3 direction;
+
 
 
     // Start is called before the first frame update

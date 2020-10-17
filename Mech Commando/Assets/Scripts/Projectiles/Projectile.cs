@@ -5,8 +5,18 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public int damage;
+    public Vector3 direction;
 
+    [SerializeField]
+    protected float lifeTime;
+    protected float lifeTimer;
 
+    protected Entity hitEntity;
+
+    protected virtual void Awake()
+    {
+        hitEntity = null;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -18,5 +28,12 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+    protected void damageEntity()
+    {
+        hitEntity.ReceiveDamage(damage);
+
     }
 }

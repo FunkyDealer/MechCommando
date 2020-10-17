@@ -20,6 +20,12 @@ public class MainWeapon : Weapon
     protected float fireDelayTimer;
     protected bool canFirePrimary;
 
+    [SerializeField]
+    protected GameObject projectile;
+
+    protected WeaponManager manager;
+
+    protected List<Transform> ShootPlaces;
 
     void onAwake()
     {
@@ -29,7 +35,10 @@ public class MainWeapon : Weapon
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        ShootPlaces = new List<Transform>();
+        FindShootPlaces();
         canFirePrimary = true;
+        
     }
 
     // Update is called once per frame
@@ -41,9 +50,19 @@ public class MainWeapon : Weapon
 
     }
 
-    public virtual void PrimaryFireStart()
+    protected void FindShootPlaces()
     {
-        
+        int nrOfChildren = transform.childCount;
+        for (int i = 0; i < nrOfChildren; i++)
+        {
+            Transform c = transform.GetChild(i);
+            if (c.gameObject.name == "ShootPlace") ShootPlaces.Add(c);
+        }
+    }
+
+    public virtual void PrimaryFireStart(WeaponManager weaponManager)
+    {
+        this.manager = weaponManager;
 
     }
 
@@ -52,7 +71,7 @@ public class MainWeapon : Weapon
 
     }
 
-    public virtual void SecondaryFireStart()
+    public virtual void SecondaryFireStart(WeaponManager weaponManager)
     {
         
     }

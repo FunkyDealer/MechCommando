@@ -8,17 +8,20 @@ public class WeaponManager : MonoBehaviour
     public MainWeapon GetCurrentPrimary() => currentPrimary;
 
     public int currentPrimaryAmmo;
-        
+
+    public delegate void UpdateAmmoEvent(int a, int maxA, bool isInfinite);
+    public static event UpdateAmmoEvent onAmmoUpdate;
 
     void awake()
     {
-
+        currentPrimaryAmmo = currentPrimary.GetMaxAmmo();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        currentPrimary = GetComponentInChildren<MainWeapon>(); 
+        currentPrimary = GetComponentInChildren<MainWeapon>();
+        onAmmoUpdate(currentPrimaryAmmo, currentPrimary.GetMaxAmmo(), currentPrimary.isInfinite);
     }
 
     // Update is called once per frame
@@ -26,23 +29,24 @@ public class WeaponManager : MonoBehaviour
     {
         if (Input.GetButtonDown("PrimaryFire"))
         {
-            primaryFireStart();
+            primaryFireStart();            
         }
         if (Input.GetButtonUp("PrimaryFire"))
         {
             primaryFireEnd();
         }
 
-
     }
 
 
     void primaryFireStart()
     {
-        currentPrimary.PrimaryFireStart();
+        if (currentPrimary.isInfinite || currentPrimaryAmmo > 0)
+        {
+            currentPrimary.PrimaryFireStart(this);
 
-
-
+            updateAmmo();
+        }
     }
 
     void primaryFireEnd()
@@ -66,5 +70,11 @@ public class WeaponManager : MonoBehaviour
         if (currentPrimaryAmmo + ammount < currentPrimary.GetMaxAmmo()) currentPrimaryAmmo += ammount;
         else currentPrimaryAmmo = currentPrimary.GetMaxAmmo();
 
+        updateAmmo();
+    }
+
+    public void updateAmmo()
+    {
+        onAmmoUpdate(currentPrimaryAmmo, currentPrimary.GetMaxAmmo(), currentPrimary.isInfinite);
     }
 }

@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Hud_Health : MonoBehaviour
+public class Hud_Health : Base_Hud
 {
     int Health;
-    public string text;
-    Text textDisplay;
 
 
-    void Awake()
+    protected override void Awake()
     {
-        textDisplay = GetComponent<Text>();
-        Player.onHealthUpdate += getHealth;
+        base.Awake();
+        Player.onHealthUpdate += GetHealth;
     }
 
     // Start is called before the first frame update
@@ -24,7 +22,7 @@ public class Hud_Health : MonoBehaviour
 
     void OnDestroy()
     {
-        Player.onHealthUpdate -= getHealth;
+        Player.onHealthUpdate -= GetHealth;
     }
 
     // Update is called once per frame
@@ -33,7 +31,7 @@ public class Hud_Health : MonoBehaviour
 
     }
 
-    void getHealth(int H, int maxHealth)
+    void GetHealth(int H, int maxHealth)
     {
         Health = H;
         textDisplay.text = $"{text}: {Health}/{maxHealth}";

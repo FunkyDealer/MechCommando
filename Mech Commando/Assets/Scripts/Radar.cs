@@ -7,14 +7,14 @@ public class Radar : MonoBehaviour
 {
     public List<GameObject> eni;
     [SerializeField]
-    double maxTime = 0.2d;
+    float maxTime = 0.2f;
     [SerializeField]
     Image image;
     [SerializeField]
     float sizeS, sizeB;
     [SerializeField]
     SpriteRenderer sprite;
-    double time;
+    float time;
     private void Start()
     {
         eni = new List<GameObject>();
@@ -23,9 +23,7 @@ public class Radar : MonoBehaviour
     }
     void Update()
     {
-
-
-
+               
         time += Time.deltaTime;
         if (time >= maxTime)
         {

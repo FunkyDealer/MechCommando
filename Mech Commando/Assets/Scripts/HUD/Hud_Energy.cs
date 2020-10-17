@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Hud_Energy : MonoBehaviour
+public class Hud_Energy : Base_Hud
 {
     int Energy;
-    public string text;
-    Text textDisplay;
 
 
-    void Awake()
+
+    protected override void Awake()
     {
-        textDisplay = GetComponent<Text>();
-        Player.onEnergyUpdate += getEnergy;
+        base.Awake();
+        Player.onEnergyUpdate += GetEnergy;
     }
 
     // Start is called before the first frame update
@@ -24,7 +23,7 @@ public class Hud_Energy : MonoBehaviour
 
     void OnDestroy()
     {
-        Player.onEnergyUpdate -= getEnergy;
+        Player.onEnergyUpdate -= GetEnergy;
     }
 
     // Update is called once per frame
@@ -33,7 +32,7 @@ public class Hud_Energy : MonoBehaviour
 
     }
 
-    void getEnergy(int E, int maxEnergy)
+    void GetEnergy(int E, int maxEnergy)
     {
         Energy = E;
         textDisplay.text = $"{text}: {Energy}/{maxEnergy}";
