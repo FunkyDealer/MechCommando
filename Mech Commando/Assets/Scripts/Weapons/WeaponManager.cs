@@ -6,6 +6,7 @@ public class WeaponManager : MonoBehaviour
 {
     MainWeapon currentPrimary;
     public MainWeapon GetCurrentPrimary() => currentPrimary;
+    Transform weaponPlace;
 
     public int currentPrimaryAmmo;
 
@@ -20,6 +21,8 @@ public class WeaponManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        weaponPlace = transform.Find("Main Camera/Weapon Place");
+        Debug.Log(weaponPlace);
         currentPrimary = GetComponentInChildren<MainWeapon>();
         onAmmoUpdate(currentPrimaryAmmo, currentPrimary.GetMaxAmmo(), currentPrimary.isInfinite);
     }
@@ -76,5 +79,20 @@ public class WeaponManager : MonoBehaviour
     public void updateAmmo()
     {
         onAmmoUpdate(currentPrimaryAmmo, currentPrimary.GetMaxAmmo(), currentPrimary.isInfinite);
+    }
+
+    public void Switch2NewWeapon(GameObject newWeapon)
+    {
+        Destroy(currentPrimary.gameObject);
+
+                
+        GameObject a = Instantiate(newWeapon, weaponPlace.position, weaponPlace.rotation, weaponPlace);
+        //a.transform.parent = weaponPlace;
+        currentPrimary = a.GetComponent<MainWeapon>();
+        a.transform.localPosition = Vector3.zero;
+        a.transform.localRotation = Quaternion.identity;
+
+        currentPrimaryAmmo = currentPrimary.GetMaxAmmo();
+
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StaticEntity : MonoBehaviour
+public class StaticEntity : Entity
 {
 
 
@@ -18,4 +18,6 @@ public class StaticEntity : MonoBehaviour
     {
         
     }
+
+
 }

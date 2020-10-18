@@ -32,7 +32,7 @@ public class Entity : MonoBehaviour
     public int Health() => currentHealth;
 
 
-    public void ReceiveDamage(int damage)
+    public virtual void ReceiveDamage(int damage)
     {
         currentHealth -= damage;
         if (currentHealth < 0) Die();

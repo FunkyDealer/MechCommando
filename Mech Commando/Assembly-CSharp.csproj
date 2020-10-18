@@ -66,7 +66,11 @@
      <Compile Include="Assets\Scripts\HUD\Hud_Ammo.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_Energy.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_Health.cs" />
+     <Compile Include="Assets\Scripts\HUD\Hud_Prompt.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_Shield.cs" />
+     <Compile Include="Assets\Scripts\Interactibles\Button.cs" />
+     <Compile Include="Assets\Scripts\Interactibles\Interactible.cs" />
+     <Compile Include="Assets\Scripts\Interactibles\WeaponPickup.cs" />
      <Compile Include="Assets\Scripts\Pickups\AmmoPickUp.cs" />
      <Compile Include="Assets\Scripts\Pickups\PickUp.cs" />
      <Compile Include="Assets\Scripts\Pickups\ShieldPickUp.cs" />
@@ -80,6 +84,7 @@
      <Compile Include="Assets\Scripts\Projectiles\Laser.cs" />
      <Compile Include="Assets\Scripts\Projectiles\Projectile.cs" />
      <Compile Include="Assets\Scripts\Radar.cs" />
+     <Compile Include="Assets\Scripts\Tutorial Entity\Target.cs" />
      <Compile Include="Assets\Scripts\Weapons\Pistol\Pistol.cs" />
      <Compile Include="Assets\Scripts\Weapons\Rifle.cs" />
      <Compile Include="Assets\Scripts\Weapons\WeaponManager.cs" />

@@ -29,11 +29,12 @@ public class MovingEntity : Entity
 
     protected void checkHealth()
     {
-        if (currentHealth <= 0) die();
+        if (currentHealth <= 0) Die();
     }
 
-    public virtual void die()
+    public override void Die()
     {
+        base.Die();
         /*
         if (manager == null)
         {

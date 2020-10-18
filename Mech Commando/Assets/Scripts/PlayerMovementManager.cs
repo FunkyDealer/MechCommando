@@ -49,6 +49,9 @@ public class PlayerMovementManager : MonoBehaviour
     [SerializeField]
     readonly float EnergySpendingTime = 0.05f;
 
+    public delegate void UpdatePromptEvent(string promt);
+    public static event UpdatePromptEvent onPromptUpdate;
+
     // awake is the first thing to be called
     void Awake()
     {
@@ -70,7 +73,7 @@ public class PlayerMovementManager : MonoBehaviour
         originalRotation = transform.localRotation;
         currentSpeed = runSpeed;
         dir = Vector3.zero;
-
+        onPromptUpdate(null);
     }
 
     // Update is called once per frame
@@ -79,26 +82,8 @@ public class PlayerMovementManager : MonoBehaviour
         if (player.isAlive())
         {
             modifiers(); //Run, walk and sprint speed
-            if (currentSpeed == sprintSpeed)
-            {
-                if (player.currentEnergy <= 0)
-                {
-                    currentSpeed = walkSpeed;
-                    EnergySpendingTimer = 0;
-                }
-                else
-                {
-                    if (EnergySpendingTimer < EnergySpendingTime) EnergySpendingTimer += Time.deltaTime;
-                    else
-                    {
-                        player.spendEnergy(player.currentEnergy - 1);
-                        EnergySpendingTimer = 0;
-                    }
-                }
-            }
-
+            EnergyManagement(); //energy management when sprinting
             Movement(); //Main direction Calculations
-
             moveCharacter(dir); //Movement Calculations
             
             //Dodging Timer
@@ -109,14 +94,22 @@ public class PlayerMovementManager : MonoBehaviour
                 canDodge = true;
             }
 
+
+            if (player.inControl)
+            {
+                CheckInteract();
+
+                if (Input.GetButtonDown("Interact"))
+                {
+                    Interact();
+                }
+            }
+
         }
         else
         {
             dir.x = 0; dir.z = 0;
-        }
-
-
-
+        }     
     }
 
     void LateUpdate() //Runs after all other update functions
@@ -127,6 +120,72 @@ public class PlayerMovementManager : MonoBehaviour
             Dodge();
         }
     }
+
+    void Interact()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 20))
+        {
+            if (hit.collider)
+            {
+                Debug.Log($"Interacting with {hit.collider.transform.name}");
+                Interactible I = hit.collider.gameObject.GetComponent<Interactible>();
+                if (I != null)
+                {
+                    I.Interact(this.gameObject);
+                }
+
+            }
+
+        }
+    }
+
+    void CheckInteract()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 20))
+        {
+            if (hit.collider)
+            {
+                Interactible I = hit.collider.gameObject.GetComponent<Interactible>();
+                if (I != null)
+                {
+                    string promt = I.Prompt();
+                    onPromptUpdate(promt);
+                } else
+                {
+                    onPromptUpdate(null);
+                }
+
+            } 
+        }
+        else
+        {
+            onPromptUpdate(null);
+        }
+    }
+
+    void EnergyManagement()
+    {
+        if (currentSpeed == sprintSpeed)
+        {
+            if (player.currentEnergy <= 0)
+            {
+                currentSpeed = walkSpeed;
+                EnergySpendingTimer = 0;
+            }
+            else
+            {
+                if (EnergySpendingTimer < EnergySpendingTime) EnergySpendingTimer += Time.deltaTime;
+                else
+                {
+                    player.spendEnergy(player.currentEnergy - 1);
+                    EnergySpendingTimer = 0;
+                }
+            }
+        }
+    }
+
 
     void Movement()
     {

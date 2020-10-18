@@ -25,4 +25,11 @@ public class Walker : Enemy
     {
         
     }
+
+    public override void Die()
+    {
+        base.Die();
+
+
+    }
 }

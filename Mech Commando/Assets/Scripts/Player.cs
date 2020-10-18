@@ -69,6 +69,7 @@ public class Player : MovingEntity
     {
         recoverEnergy();
 
+
     }
 
     public bool isAlive() => alive;
@@ -113,7 +114,7 @@ public class Player : MovingEntity
     }
 
 
-    public override void die()
+    public override void Die()
     {
 
         Debug.Log($"Player Died");
