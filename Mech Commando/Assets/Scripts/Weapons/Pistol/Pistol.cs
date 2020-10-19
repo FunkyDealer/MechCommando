@@ -25,6 +25,7 @@ public class Pistol : MainWeapon, IMainWeapon
 
     public override void PrimaryFireStart(WeaponManager weaponManager)
     {
+        manager = weaponManager;
         PrimaryFire();
     }
 

@@ -57,6 +57,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Enemies\AIMovementManager.cs" />
      <Compile Include="Assets\Scripts\Enemies\Walker.cs" />
+     <Compile Include="Assets\Scripts\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\EnityTypes\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnityTypes\Entity.cs" />
      <Compile Include="Assets\Scripts\EnityTypes\MovingEntity.cs" />
@@ -66,6 +67,7 @@
      <Compile Include="Assets\Scripts\HUD\Hud_Ammo.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_Energy.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_Health.cs" />
+     <Compile Include="Assets\Scripts\HUD\Hud_NanopakDisplayManager.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_Prompt.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_Shield.cs" />
      <Compile Include="Assets\Scripts\Interactibles\Button.cs" />
@@ -78,6 +80,7 @@
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerCamera.cs" />
      <Compile Include="Assets\Scripts\PlayerMovementManager.cs" />
+     <Compile Include="Assets\Scripts\Projectiles\Enemy Projectiles\PhysLaser.cs" />
      <Compile Include="Assets\Scripts\Projectiles\GyroGet.cs" />
      <Compile Include="Assets\Scripts\Projectiles\HitScanProjectile.cs" />
      <Compile Include="Assets\Scripts\Projectiles\KineticProjectile.cs" />
@@ -85,6 +88,7 @@
      <Compile Include="Assets\Scripts\Projectiles\Projectile.cs" />
      <Compile Include="Assets\Scripts\Radar.cs" />
      <Compile Include="Assets\Scripts\Tutorial Entity\Target.cs" />
+     <Compile Include="Assets\Scripts\Weapons\LaserRiffle.cs" />
      <Compile Include="Assets\Scripts\Weapons\Pistol\Pistol.cs" />
      <Compile Include="Assets\Scripts\Weapons\Rifle.cs" />
      <Compile Include="Assets\Scripts\Weapons\WeaponManager.cs" />

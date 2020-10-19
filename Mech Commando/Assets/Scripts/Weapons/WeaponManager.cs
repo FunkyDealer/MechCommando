@@ -84,7 +84,6 @@ public class WeaponManager : MonoBehaviour
     public void Switch2NewWeapon(GameObject newWeapon)
     {
         Destroy(currentPrimary.gameObject);
-
                 
         GameObject a = Instantiate(newWeapon, weaponPlace.position, weaponPlace.rotation, weaponPlace);
         //a.transform.parent = weaponPlace;

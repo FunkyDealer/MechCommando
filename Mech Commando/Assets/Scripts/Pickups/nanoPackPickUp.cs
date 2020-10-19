@@ -10,8 +10,11 @@ public class nanoPackPickUp : PickUp
         if (other.gameObject.tag == "Player")
         {
             Player p = other.gameObject.GetComponent<Player>();
-            p.increaseHpak();
-            Destroy(gameObject);
+            if (p.getHealthPakQt() < p.healthPacksQtMax)
+            {
+                p.increaseHpak();
+                Destroy(gameObject);
+            }
         }
     }
 

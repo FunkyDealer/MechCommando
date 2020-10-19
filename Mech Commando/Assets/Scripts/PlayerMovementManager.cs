@@ -6,9 +6,12 @@ public class PlayerMovementManager : MonoBehaviour
 {
     CharacterController controller;
     Camera cam;
-    readonly float runSpeed = 50;
-    readonly float walkSpeed = 25;
-    readonly float sprintSpeed = 100;
+    [SerializeField]
+    float runSpeed;
+    [SerializeField]
+    float walkSpeed;
+    [SerializeField]
+    float sprintSpeed;
     float currentSpeed;
     float jumpPower = 2;
     Player player;

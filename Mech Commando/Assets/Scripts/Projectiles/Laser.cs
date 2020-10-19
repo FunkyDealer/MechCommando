@@ -62,14 +62,12 @@ public class Laser : HitScanProjectile
                 end = hit.point;
                 calcEntity(hit);
             }
-
         }
         else
         {
            // Debug.Log($"End Position: {direction * 10}");
             end = start + direction * maxSize;
         }
-
         lr.SetPosition(1, end);
     }
 

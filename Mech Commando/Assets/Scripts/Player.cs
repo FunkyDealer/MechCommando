@@ -7,7 +7,7 @@ public class Player : MovingEntity
     int currentArmor;
     [SerializeField]
     int maxArmor;
-    
+
     public int currentEnergy;
     [SerializeField]
     int maxEnergy;
@@ -28,6 +28,9 @@ public class Player : MovingEntity
     public delegate void UpdateArmorEvent(int a, int maxA);
     public static event UpdateArmorEvent onArmorUpdate;
 
+    public delegate void UpdateNanopakEvent(int n);
+    public static event UpdateNanopakEvent onNanopakUpdate;
+
     public delegate void PrimaryFire();
     public static event PrimaryFire onPrimaryFire;
 
@@ -40,7 +43,7 @@ public class Player : MovingEntity
     float EnergyRecoverDelay = 0.3f; //Time before energy starts recovering again
     float EnergyRecoverDelayTimer;
 
-    
+
 
     protected override void Awake()
     {
@@ -57,26 +60,34 @@ public class Player : MovingEntity
     // Start is called before the first frame update
     void Start()
     {
-
         onHealthUpdate(currentHealth, maxHealth);
         onEnergyUpdate(currentEnergy, maxEnergy);
         onArmorUpdate(currentArmor, maxArmor);
+        onNanopakUpdate(healthPacksQt);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        recoverEnergy();
+        if (alive && inControl)
+        {
+            recoverEnergy();
 
+            if (healthPacksQt > 0 && Input.GetButtonDown("NanoPak"))
+            {
+                //Debug.Log("nanoPak");
+                useHealthPack();
+            }
 
+        }
     }
 
     public bool isAlive() => alive;
     public int CurrentArmor() => currentArmor;
     public int MaxArmor() => maxArmor;
-  
-    
+
+
     public void spendEnergy(int newEnergy)
     {
         currentEnergy = newEnergy;
@@ -113,6 +124,19 @@ public class Player : MovingEntity
         onHealthUpdate(currentHealth, maxHealth);
     }
 
+    void useHealthPack()
+    {
+        if (currentHealth < maxHealth)
+        {
+            if (currentHealth + 50 > maxHealth) { currentHealth = maxHealth; }
+            else { currentHealth += 50; healthPacksQt--; Debug.Log($"NanoPak used, {healthPacksQt} remaining..."); }
+
+        } else
+        {
+            Debug.Log("Health already maxed");
+        }
+        onNanopakUpdate(healthPacksQt);
+    }
 
     public override void Die()
     {
@@ -121,7 +145,12 @@ public class Player : MovingEntity
 
     }
 
-    public void increaseHpak() => healthPacksQt++;
+    public void increaseHpak() {
+        healthPacksQt++;
+        onNanopakUpdate(healthPacksQt);
+    }
+
+    public int getHealthPakQt() => healthPacksQt;
 
     public void increaseArmor(int ammount)
     {
