@@ -9,19 +9,25 @@ public class PhysLaser : KineticProjectile
 
     [SerializeField]
     private float size;
-    private LineRenderer lr;
-
+    private LineRenderer lr;    
 
     protected override void Awake()
     {
         base.Awake();
+
+        start = transform.position - direction * size / 2;
+        end = transform.position + direction * size / 2;
+
         lr = GetComponent<LineRenderer>();
     }
 
     // Start is called before the first frame update
     void Start()
-    {        
-        initialCalc();
+    {
+        //initialCalc();
+        lr.SetPosition(0, start);
+        lr.SetPosition(1, end);
+        CheckColision();
         //Debug.Log(start);
     }
 
@@ -36,41 +42,33 @@ public class PhysLaser : KineticProjectile
 
     void LateUpdate()
     {
-       CheckColision();
-    }
-
-
-    void initialCalc()
-    {
-
-        end = start + direction * size;
-        lr.SetPosition(0, start);
-        lr.SetPosition(1, end);
-        
         CheckColision();
+
     }
+
 
     void calculateLaser()
     {
-        start += direction * velocity * Time.deltaTime;      
+        //start += direction * velocity * Time.deltaTime;    
+        //end += direction * velocity * Time.deltaTime;
 
-        end += direction * velocity * Time.deltaTime;
+        transform.position += direction * velocity * Time.deltaTime;
+        start = transform.position - direction * size / 2;
+        end = transform.position + direction * size / 2;  
 
-       
         lr.SetPosition(0, start);
         lr.SetPosition(1, end);
     }
 
     void CheckColision()
-    {
-        float distance = Vector3.Distance(start, end);
-
+    {        
         RaycastHit hit;
-        if (Physics.Raycast(start, direction, out hit, distance))
+        if (Physics.Raycast(transform.position, direction, out hit, size / 2))
         {
             if (hit.collider)
             {
-                calcEntity(hit);                
+                calcEntity(hit);
+                Destroy(gameObject);
             }
         }
     }
@@ -78,7 +76,12 @@ public class PhysLaser : KineticProjectile
     void calcEntity(RaycastHit hit)
     {
         hitEntity = hit.transform.gameObject.GetComponent<Entity>();
-        if (hitEntity != null) { damageEntity(); Debug.Log("entered"); }
-        Destroy(gameObject);
+        if (hitEntity != null) hitEntity.ReceiveDamage(damage);
+
     }
+
+
+
+
+
 }

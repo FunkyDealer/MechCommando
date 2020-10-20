@@ -118,11 +118,6 @@ public class Player : MovingEntity
         }
     }
 
-    public void updateHealth(int newHealth)
-    {
-        currentHealth = newHealth;
-        onHealthUpdate(currentHealth, maxHealth);
-    }
 
     void useHealthPack()
     {
@@ -138,12 +133,21 @@ public class Player : MovingEntity
         onNanopakUpdate(healthPacksQt);
     }
 
+    public override void getDamage(int damage)
+    {
+        base.getDamage(damage);
+        onHealthUpdate(currentHealth, maxHealth);
+
+    }
+
     public override void Die()
     {
 
         Debug.Log($"Player Died");
 
     }
+
+
 
     public void increaseHpak() {
         healthPacksQt++;

@@ -5522,6 +5522,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPrimaryAmmo: 0
+  maxTargetDistance: 1000
+  minTargetDistance: 40
 --- !u!1 &1028562213
 GameObject:
   m_ObjectHideFlags: 0

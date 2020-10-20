@@ -68,7 +68,7 @@ public class Rifle : MainWeapon, IMainWeapon
 
             foreach (Transform s in ShootPlaces)
             {
-                GameObject a = Instantiate(projectile, s.position, Quaternion.identity);
+                GameObject a = Instantiate(projectile, s.position, Quaternion.identity);                
                 GyroGet g = a.GetComponent<GyroGet>();
                 g.direction = transform.forward;
                 g.damage = baseDamage;

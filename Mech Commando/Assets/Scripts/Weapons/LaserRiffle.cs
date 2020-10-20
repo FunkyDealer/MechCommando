@@ -55,9 +55,14 @@ public class LaserRiffle : MainWeapon, IMainWeapon
 
             foreach (Transform s in ShootPlaces)
             {
-                GameObject a = Instantiate(projectile, s.position, Quaternion.identity);
+                //Debug.Log(s.position);
+                GameObject a = Instantiate(projectile, s.TransformPoint(Vector3.zero), Quaternion.identity);
                 PhysLaser l = a.GetComponent<PhysLaser>();
-                l.start = s.localPosition;
+                
+                // l.transform.position = s.TransformPoint(Vector3.zero);
+                // l.transform.position = s.position;
+                //l.transform.position = s.localPosition;
+
                 l.direction = transform.forward;
                 l.damage = baseDamage;
             }

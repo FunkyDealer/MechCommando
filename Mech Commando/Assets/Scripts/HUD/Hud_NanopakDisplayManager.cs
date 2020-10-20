@@ -9,8 +9,15 @@ public class Hud_NanopakDisplayManager : MonoBehaviour
 
     void Awake()
     {
-        nanoPakDisplays = new RawImage[3];
         Player.onNanopakUpdate += updateNanoPak;
+        nanoPakDisplays = new RawImage[3];
+        for (int i = 0; i < 3; i++)
+        {
+            nanoPakDisplays[i] = transform.Find($"Nanopak{i}").GetComponent<RawImage>();
+            nanoPakDisplays[i].enabled = false;
+        }
+
+        
 
     }
 
@@ -18,11 +25,7 @@ public class Hud_NanopakDisplayManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 3; i++)
-        {
-            nanoPakDisplays[i] = transform.Find($"Nanopak{i}").GetComponent<RawImage>();
-            nanoPakDisplays[i].enabled = false;
-        }
+
 
     }
 

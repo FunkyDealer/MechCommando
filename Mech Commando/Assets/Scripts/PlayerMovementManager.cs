@@ -313,65 +313,6 @@ public class PlayerMovementManager : MonoBehaviour
     }
 
 
-    void DodgeButtonMechanics(Vector3 input)
-    {
-
-        ///-------------------------DODGING BUTTON LOGIC-----------------------
-        if (dodgeButtonState == DodgeButtonState.none)
-        {
-            if (input.x < 0) { dodgeButtonState = DodgeButtonState.Left1; dodgeButtonTimer = 0; }
-            else if (input.x > 0) { dodgeButtonState = DodgeButtonState.Right1; dodgeButtonTimer = 0; }
-        }
-
-        if (dodgeButtonState == DodgeButtonState.Left1 || dodgeButtonState == DodgeButtonState.Right1)
-        {
-            if (dodgeButtonTime > dodgeButtonTimer) dodgeButtonTimer += Time.deltaTime;
-            else { dodgeButtonState = DodgeButtonState.none; }
-
-            if (dodgeButtonState == DodgeButtonState.Left1)
-            {
-                if (input.x == 0)
-                {
-                    dodgeButtonState = DodgeButtonState.Left2;
-                    dodgeButtonTimer = 0;
-                }
-                else if (input.x > 0) dodgeButtonState = DodgeButtonState.none;
-            }
-            else if (dodgeButtonState == DodgeButtonState.Right1)
-            {
-                if (input.x == 0)
-                {
-                    dodgeButtonState = DodgeButtonState.Right2;
-                    dodgeButtonTimer = 0;
-                }
-                else if (input.x < 0) dodgeButtonState = DodgeButtonState.none;
-            }
-        }
-
-        else if (dodgeButtonState == DodgeButtonState.Left2 || dodgeButtonState == DodgeButtonState.Right2)
-        {
-            if (dodgeButtonTime > dodgeButtonTimer) dodgeButtonTimer += Time.deltaTime;
-            else { dodgeButtonState = DodgeButtonState.none; }
-
-            if (dodgeButtonState == DodgeButtonState.Left2)
-            {
-                if (input.x < 0 && player.inControl && canDodge)
-                {
-                    startDodge(-transform.right);
-                }
-            }
-            else if (dodgeButtonState == DodgeButtonState.Right2)
-            {
-                if (input.x > 0 && player.inControl && canDodge)
-                {
-                    startDodge(transform.right);
-                }
-
-            }
-        }
-
-
-    }
 
 
 

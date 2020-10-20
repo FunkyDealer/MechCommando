@@ -20,14 +20,14 @@ public class MovingEntity : Entity
         
     }
 
-    public void getDamage(int damage)
+    public virtual void getDamage(int damage)
     {
         currentHealth -= damage;
         checkHealth();
 
     }
 
-    protected void checkHealth()
+    protected virtual void checkHealth()
     {
         if (currentHealth <= 0) Die();
     }
