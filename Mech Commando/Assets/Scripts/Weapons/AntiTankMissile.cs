@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AntiTankMissile : MonoBehaviour
+public class AntiTankMissile : KineticProjectile
 {
-    Vector3 direction;
-    Vector3 position;
-    GameObject Enemy;
-
+    public GameObject go;
     void Start()
     {
-        
+
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
 
+        direction = go.transform.position - this.transform.position;
+        this.transform.position += direction * Time.deltaTime * velocity;
+    }
+
+    protected override void Die()
+    {
+        base.Die();
     }
 }

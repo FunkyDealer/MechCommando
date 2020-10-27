@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\HUD\Hud_Energy.cs" />
     <Compile Include="Assets\Scripts\HUD\Hud_Health.cs" />
     <Compile Include="Assets\Scripts\HUD\Hud_NanopakDisplayManager.cs" />
+    <Compile Include="Assets\Scripts\HUD\Hud_OverHeat.cs" />
     <Compile Include="Assets\Scripts\HUD\Hud_Prompt.cs" />
     <Compile Include="Assets\Scripts\HUD\Hud_Shield.cs" />
     <Compile Include="Assets\Scripts\Interactibles\Button.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Assets\Scripts\Radar.cs" />
     <Compile Include="Assets\Scripts\Tutorial Entity\Target.cs" />
     <Compile Include="Assets\Scripts\Weapons\AntiTankMissile.cs" />
+    <Compile Include="Assets\Scripts\Weapons\AutoAim.cs" />
     <Compile Include="Assets\Scripts\Weapons\EspecialAim.cs" />
     <Compile Include="Assets\Scripts\Weapons\LaserRiffle.cs" />
     <Compile Include="Assets\Scripts\Weapons\Pistol\Pistol.cs" />

@@ -7,7 +7,7 @@ public class Laser : HitScanProjectile
     [SerializeField]
     private int maxSize;
     private LineRenderer lr;
-       
+
     [SerializeField]
     private float LaserSpeed;
 
@@ -42,11 +42,11 @@ public class Laser : HitScanProjectile
     {
         Vector3 laserDir = end - start;
         laserDir.Normalize();
-        start += laserDir * LaserSpeed * Time.deltaTime;        
+        start += laserDir * LaserSpeed * Time.deltaTime;
         laserLenght = laserDir.magnitude;
         //if (laserLenght < 1) Destroy(gameObject);
         lr.SetPosition(0, start);
-        
+
 
     }
 
@@ -65,7 +65,7 @@ public class Laser : HitScanProjectile
         }
         else
         {
-           // Debug.Log($"End Position: {direction * 10}");
+            // Debug.Log($"End Position: {direction * 10}");
             end = start + direction * maxSize;
         }
         lr.SetPosition(1, end);

@@ -8,7 +8,7 @@ public class MainWeapon : Weapon
     public bool isInfinite; //if the ammo is infinite or not
 
     protected int currentHeatLevel;
-    protected int maxHeatLevel;
+    protected int maxHeatLevel = 100;
     [SerializeField]
     protected string countryOfOrigin;
     protected int accuracy;
@@ -19,6 +19,10 @@ public class MainWeapon : Weapon
     protected float fireDelay;
     protected float fireDelayTimer;
     protected bool canFirePrimary;
+
+
+    public delegate void UpdateOverHeatEvent(float heat, float maxHeat);
+    public static event UpdateOverHeatEvent onHeatUpdate;
 
     [SerializeField]
     protected GameObject projectile;
@@ -38,15 +42,15 @@ public class MainWeapon : Weapon
         ShootPlaces = new List<Transform>();
         FindShootPlaces();
         canFirePrimary = true;
-        
+
+        onHeatUpdate(currentHeatLevel, maxHeatLevel);
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-       
 
-
+        onHeatUpdate(currentHeatLevel, maxHeatLevel);
 
     }
 
@@ -73,13 +77,15 @@ public class MainWeapon : Weapon
 
     public virtual void SecondaryFireStart(WeaponManager weaponManager)
     {
-        
+
     }
 
     public virtual void SecondaryFireEnd()
     {
 
     }
-
-
+    public void updateOverHeat()
+    {
+        onHeatUpdate(currentHeatLevel, maxHeatLevel);
+    }
 }
