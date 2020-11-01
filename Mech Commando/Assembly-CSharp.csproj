@@ -100,6 +100,7 @@
     <Compile Include="Assets\Scripts\Weapons\AntiTankMissile.cs" />
     <Compile Include="Assets\Scripts\Weapons\AutoAim.cs" />
     <Compile Include="Assets\Scripts\Weapons\EspecialAim.cs" />
+    <Compile Include="Assets\Scripts\Weapons\GuidedMissile.cs" />
     <Compile Include="Assets\Scripts\Weapons\LaserRiffle.cs" />
     <Compile Include="Assets\Scripts\Weapons\Pistol\Pistol.cs" />
     <Compile Include="Assets\Scripts\Weapons\Rifle.cs" />

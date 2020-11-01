@@ -5,8 +5,11 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     MainWeapon currentPrimary;
+    SpecialWeapon currentSpecial;
     public MainWeapon GetCurrentPrimary() => currentPrimary;
+    public SpecialWeapon GetCurrentSpecial() => currentSpecial;
     Transform weaponPlace;
+    Transform SpecialPlace;
 
     public int currentPrimaryAmmo;
 
@@ -28,9 +31,10 @@ public class WeaponManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     
 
-        weaponPlace = transform.Find("Main Camera/Weapon Place");
+        SpecialPlace = transform.Find("Main Camera/Special Weapon Place");
+        currentSpecial = GetComponentInChildren<SpecialWeapon>();
+        weaponPlace = transform.Find("Main Camera/SpecialWeapon Place");
         currentPrimary = GetComponentInChildren<MainWeapon>();
 
         GameObject c = GameObject.Find("Main Camera");
@@ -44,16 +48,20 @@ public class WeaponManager : MonoBehaviour
     {
         if (Input.GetButtonDown("PrimaryFire"))
         {
-            primaryFireStart();            
+            primaryFireStart();
         }
         if (Input.GetButtonUp("PrimaryFire"))
         {
             primaryFireEnd();
         }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            SpecialFire();
+        }
 
 
 
-       
+
     }
 
     void LateUpdate()
@@ -88,7 +96,7 @@ public class WeaponManager : MonoBehaviour
                 // Debug.Log($"looking at {hit.collider.name}");
             }
         }
-        
+
         return target;
     }
 
@@ -115,7 +123,7 @@ public class WeaponManager : MonoBehaviour
 
     void SpecialFire()
     {
-
+        currentSpecial.Disparo();
     }
 
 
@@ -135,7 +143,7 @@ public class WeaponManager : MonoBehaviour
     public void Switch2NewWeapon(GameObject newWeapon)
     {
         Destroy(currentPrimary.gameObject);
-                
+
         GameObject a = Instantiate(newWeapon, weaponPlace.position, weaponPlace.rotation, weaponPlace);
         //a.transform.parent = weaponPlace;
         currentPrimary = a.GetComponent<MainWeapon>();
