@@ -24,11 +24,10 @@ public class Rifle : MainWeapon, IMainWeapon
     {
         base.Update();
 
-        if (!canFirePrimary && fireDelayTimer < fireDelay) fireDelayTimer += Time.deltaTime;
-        else { canFirePrimary = true; }
 
-        if (firingPrimary && canFirePrimary) PrimaryFire();
+        if (firingPrimary) PrimaryFire();
 
+        
     }
 
     public override void PrimaryFireStart(WeaponManager weaponManager)
@@ -42,7 +41,7 @@ public class Rifle : MainWeapon, IMainWeapon
     }
 
     public override void PrimaryFireEnd()
-    {
+    {        
         firingPrimary = false;
     }
 
@@ -58,19 +57,21 @@ public class Rifle : MainWeapon, IMainWeapon
 
     private void PrimaryFire()
     {
-        if (canFirePrimary && manager.currentPrimaryAmmo > 0)
+        if (!overHeated && canFirePrimary && manager.currentPrimaryAmmo > 0)
         {
             // Debug.Log($"Primary Weapon Firing: Primary Fire");
             fireDelayTimer = 0;
             canFirePrimary = false;
             manager.currentPrimaryAmmo--;
             manager.updateAmmo();
+            heatUp();
 
             foreach (Transform s in ShootPlaces)
             {
                 GameObject a = Instantiate(projectile, s.position, Quaternion.identity);                
                 GyroGet g = a.GetComponent<GyroGet>();
                 g.direction = transform.forward;
+                Debug.Log(g.direction);
                 g.damage = baseDamage;
             }
         }
@@ -81,10 +82,4 @@ public class Rifle : MainWeapon, IMainWeapon
         //Debug.Log($"Primary Weapon Firing: Secondary Fire");
     }
 
-    private void ShootPrimary()
-    {
-
-
-
-    }
 }

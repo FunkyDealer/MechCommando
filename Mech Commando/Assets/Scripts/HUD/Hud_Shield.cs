@@ -12,7 +12,7 @@ public class Hud_Shield : Base_Hud
     protected override void Awake()
     {
         base.Awake();
-        Player.onArmorUpdate += GetShield;
+        Player.onShieldUpdate += GetShield;
     }
 
     // Start is called before the first frame update

@@ -7,11 +7,11 @@ public class Hud_OverHeat : Base_Hud
     protected override void Awake()
     {
         base.Awake();
-        MainWeapon.onHeatUpdate += GetHeat;
+       WeaponManager.onHeatUpdate += GetHeat;
     }
     void OnDestroy()
     {
-        MainWeapon.onHeatUpdate -= GetHeat;
+        WeaponManager.onHeatUpdate -= GetHeat;
     }
     void Start()
     {
@@ -21,7 +21,7 @@ public class Hud_OverHeat : Base_Hud
     {
 
     }
-    void GetHeat(float currentHeat, float maxHeat) 
+    void GetHeat(int currentHeat, int maxHeat) 
     {
         textDisplay.text = $"{text}: {currentHeat}/{maxHeat}";
     }

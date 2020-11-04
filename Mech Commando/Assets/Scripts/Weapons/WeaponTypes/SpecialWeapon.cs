@@ -17,7 +17,7 @@ public class SpecialWeapon : Weapon
 
     }
 
-    public virtual void Disparo()
+    public virtual void Shoot()
     {
 
 

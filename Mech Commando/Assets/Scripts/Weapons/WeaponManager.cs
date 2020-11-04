@@ -16,6 +16,9 @@ public class WeaponManager : MonoBehaviour
     public delegate void UpdateAmmoEvent(int a, int maxA, bool isInfinite);
     public static event UpdateAmmoEvent onAmmoUpdate;
 
+    public delegate void UpdateHeatLevel(int l, int maxL);
+    public static event UpdateHeatLevel onHeatUpdate;
+
     Camera cam;
     [SerializeField]
     float maxTargetDistance;
@@ -34,7 +37,8 @@ public class WeaponManager : MonoBehaviour
 
         SpecialPlace = transform.Find("Main Camera/Special Weapon Place");
         currentSpecial = GetComponentInChildren<SpecialWeapon>();
-        weaponPlace = transform.Find("Main Camera/SpecialWeapon Place");
+
+        weaponPlace = transform.Find("Main Camera/Weapon Place");
         currentPrimary = GetComponentInChildren<MainWeapon>();
 
         GameObject c = GameObject.Find("Main Camera");
@@ -48,26 +52,52 @@ public class WeaponManager : MonoBehaviour
     {
         if (Input.GetButtonDown("PrimaryFire"))
         {
-            primaryFireStart();
+            primaryFireStart();            
         }
         if (Input.GetButtonUp("PrimaryFire"))
         {
             primaryFireEnd();
         }
-        if (Input.GetKeyDown(KeyCode.G))
+
+        if (Input.GetButtonDown("SpecialFire"))
         {
-            SpecialFire();
+            SpecialFireStart();
+        }
+
+        if (Input.GetButtonUp("SpecialFire"))
+        {
+            SpecialFireEnd();
         }
 
 
+        if (Input.GetButtonDown("SecondaryFire"))
+        {
+            SecondaryFireStart();
+        }
+        if (Input.GetButtonUp("SecondaryFire"))
+        {
+            SecondaryFireEnd();
+        }
 
+            if (Input.GetButtonDown("SpecialFire"))
+        {
+            SpecialFireStart();
+        }
+        if (Input.GetButtonUp("SpecialFire"))
+        {
+            SpecialFireEnd();
+        }
 
+       
     }
 
     void LateUpdate()
     {
 
         weaponPlace.LookAt(calcTarget()); //Corrects the weapon to point at where you are looking
+
+        //Update hud Heat Level
+        onHeatUpdate(currentPrimary.GetCurrentHeatLevel(), currentPrimary.GetMaxHeatLevel());
 
 
     }
@@ -96,7 +126,7 @@ public class WeaponManager : MonoBehaviour
                 // Debug.Log($"looking at {hit.collider.name}");
             }
         }
-
+        
         return target;
     }
 
@@ -106,7 +136,6 @@ public class WeaponManager : MonoBehaviour
         if (currentPrimary.isInfinite || currentPrimaryAmmo > 0)
         {
             currentPrimary.PrimaryFireStart(this);
-
             updateAmmo();
         }
     }
@@ -116,14 +145,32 @@ public class WeaponManager : MonoBehaviour
         currentPrimary.PrimaryFireEnd();
     }
 
+    void SecondaryFireStart() //Pull the trigger
+    {
+            currentPrimary.SecondaryFireStart(this);
+            updateAmmo();
+    }
+
+    void SecondaryFireEnd() //Release the trigger
+    {
+        currentPrimary.SecondaryFireEnd();
+    }
+
     void SecondaryFire()
     {
 
     }
 
-    void SpecialFire()
+
+
+    void SpecialFireStart()
     {
-        currentSpecial.Disparo();
+        currentSpecial.Shoot();
+    }
+
+    void SpecialFireEnd()
+    {
+
     }
 
 
@@ -143,7 +190,7 @@ public class WeaponManager : MonoBehaviour
     public void Switch2NewWeapon(GameObject newWeapon)
     {
         Destroy(currentPrimary.gameObject);
-
+                
         GameObject a = Instantiate(newWeapon, weaponPlace.position, weaponPlace.rotation, weaponPlace);
         //a.transform.parent = weaponPlace;
         currentPrimary = a.GetComponent<MainWeapon>();

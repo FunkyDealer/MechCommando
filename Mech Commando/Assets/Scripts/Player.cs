@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player : MovingEntity
 {
-    int currentArmor;
+    int currentShield;
     [SerializeField]
-    int maxArmor;
+    int maxShield;
 
     public int currentEnergy;
     [SerializeField]
@@ -25,8 +25,8 @@ public class Player : MovingEntity
     public delegate void UpdateEnergyEvent(int e, int maxE);
     public static event UpdateEnergyEvent onEnergyUpdate;
 
-    public delegate void UpdateArmorEvent(int a, int maxA);
-    public static event UpdateArmorEvent onArmorUpdate;
+    public delegate void UpdateShieldEvent(int s, int maxS);
+    public static event UpdateShieldEvent onShieldUpdate;
 
     public delegate void UpdateNanopakEvent(int n);
     public static event UpdateNanopakEvent onNanopakUpdate;
@@ -54,7 +54,7 @@ public class Player : MovingEntity
         EnergyRecoverTimer = 0;
         canRecoverEnergy = true;
         EnergyRecoverTimer = 0;
-        currentArmor = 0;
+        currentShield = 0;
     }
 
     // Start is called before the first frame update
@@ -62,7 +62,7 @@ public class Player : MovingEntity
     {
         onHealthUpdate(currentHealth, maxHealth);
         onEnergyUpdate(currentEnergy, maxEnergy);
-        onArmorUpdate(currentArmor, maxArmor);
+        onShieldUpdate(currentShield, maxShield);
         onNanopakUpdate(healthPacksQt);
 
     }
@@ -84,8 +84,8 @@ public class Player : MovingEntity
     }
 
     public bool isAlive() => alive;
-    public int CurrentArmor() => currentArmor;
-    public int MaxArmor() => maxArmor;
+    public int CurrentShield() => currentShield;
+    public int MaxShield() => maxShield;
 
 
     public void spendEnergy(int newEnergy)
@@ -135,8 +135,26 @@ public class Player : MovingEntity
 
     public override void getDamage(int damage)
     {
-        base.getDamage(damage);
+       // base.getDamage(damage);
+
+        if (currentShield < 0) { //If player has shield
+
+            int dmgHealth = damage / 5; //damage receive is 1/5
+            currentHealth -= dmgHealth;
+            int dmgShield = (damage - damage / 5) / 2; //shield receives 80% / 2 damage
+            currentShield -= dmgShield;
+            if (currentShield > 0) currentShield = 0;
+
+        }
+        else
+        {
+            currentHealth -= damage;
+        }
+
+        checkHealth();
+
         onHealthUpdate(currentHealth, maxHealth);
+        onShieldUpdate(currentShield, maxShield);
 
     }
 
@@ -156,12 +174,12 @@ public class Player : MovingEntity
 
     public int getHealthPakQt() => healthPacksQt;
 
-    public void increaseArmor(int ammount)
+    public void increaseShield(int ammount)
     {
-        if (currentArmor + ammount < maxArmor) currentArmor += ammount;
-        else currentArmor = maxArmor;
+        if (currentShield + ammount < maxShield) currentShield += ammount;
+        else currentShield = maxShield;
 
-        onArmorUpdate(currentArmor, maxArmor);
+        onShieldUpdate(currentShield, maxShield);
     }
 
 }

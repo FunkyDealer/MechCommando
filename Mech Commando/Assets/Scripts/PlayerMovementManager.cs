@@ -170,7 +170,7 @@ public class PlayerMovementManager : MonoBehaviour
 
     void EnergyManagement()
     {
-        if (currentSpeed == sprintSpeed)
+        if (currentSpeed == sprintSpeed && (dir.x > 0 || dir.z > 0))
         {
             if (player.currentEnergy <= 0)
             {

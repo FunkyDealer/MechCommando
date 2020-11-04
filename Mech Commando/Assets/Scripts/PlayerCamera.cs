@@ -25,6 +25,9 @@ public class PlayerCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+   
+       
+
         originalRotation = transform.localRotation;
     }
 
@@ -42,20 +45,24 @@ public class PlayerCamera : MonoBehaviour
 
         rotationY = Mathf.Clamp(rotationY, -90, 90);
 
-
         //Adds the rotation values to their relative array
         rotArrayY = rotationY;
         rotArrayX = rotationX;
 
+        //Debug.Log(rotArrayY);
+
         //if (rotArrayY > 89) rotArrayY = 89;
         //else if (rotArrayY < -89) rotArrayY = -89;
+
+        
+
+        
 
         //Adding up all the rotational input values from each array
 
         rotAverageY += rotArrayY;
-        rotAverageX += rotArrayX;
-
-
+        rotAverageX += rotArrayX;       
+        
 
         //Get the rotation you will be at next as a Quaternion
         Quaternion yQuaternion = Quaternion.AngleAxis(rotAverageY, Vector3.left);

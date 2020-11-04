@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Pistol : MainWeapon, IMainWeapon
 {
-    [SerializeField]
-    int HeatCost = 40;
+
 
     // Start is called before the first frame update
     protected override void Start()
@@ -19,31 +18,6 @@ public class Pistol : MainWeapon, IMainWeapon
     {
         base.Update();
 
-        //  if (!canFirePrimary && fireDelayTimer < fireDelay) fireDelayTimer += Time.deltaTime;
-        // else { canFirePrimary = true; }
-
-        if (currentHeatLevel > 0)
-        {
-            currentHeatLevel -= (int)(150 * Time.deltaTime);
-        //    Debug.Log(currentHeatLevel);
-            // Debug.Log("TEMPO: " + Time.deltaTime);
-            if (currentHeatLevel <= 0)
-            {
-                //Debug.Log(currentHeatLevel);
-                //Debug.Log("PODE DISPARAR");
-                canFirePrimary = true;
-                currentHeatLevel = 0;
-            }
-        }
-
-        if (currentHeatLevel >= maxHeatLevel)
-        {
-            //Debug.Log(currentHeatLevel);
-            //Debug.Log("SOBREAQUECEU");
-            canFirePrimary = false;
-        }
-      
-
         
     }
 
@@ -51,7 +25,6 @@ public class Pistol : MainWeapon, IMainWeapon
     {
         manager = weaponManager;
         PrimaryFire();
-
     }
 
     public override void PrimaryFireEnd()
@@ -71,12 +44,12 @@ public class Pistol : MainWeapon, IMainWeapon
 
     private void PrimaryFire()
     {
-        if (canFirePrimary)
+        if (!overHeated && canFirePrimary)
         {
-            currentHeatLevel += HeatCost;
-            // Debug.Log($"Primary Weapon Firing: Primary Fire");
+            heatUp();
+           // Debug.Log($"Primary Weapon Firing: Primary Fire");
             fireDelayTimer = 0;
-            //canFirePrimary = false;
+            canFirePrimary = false;
 
             foreach (Transform s in ShootPlaces)
             {
