@@ -14,7 +14,6 @@ public class M_Option : MonoBehaviour
     {
         selected = false;
         selection = transform.Find("Selection").gameObject;
-        
     }
 
     // Start is called before the first frame update
@@ -27,8 +26,7 @@ public class M_Option : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {        
 
 
     }
@@ -37,6 +35,7 @@ public class M_Option : MonoBehaviour
     {
         // do mouse hover stuff
         selection.SetActive(true);
+        Debug.Log("mouse is over");
         selected = true;
     }
 

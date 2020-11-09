@@ -43,17 +43,20 @@ public class GyroGet : KineticProjectile
     protected override void Update()
     {
         base.Update();
-        movement();
 
+        FuelManagement();
         if (fuel <= 0) rigidBody.useGravity = true;
 
     }
 
-    void movement()
+    void FixedUpdate()
     {
-        Vector3 dir_ = direction.normalized;
+        Movement();
+    }
 
-        transform.position += direction * velocity * Time.deltaTime;
+    void FuelManagement()
+    {
+
         if (fuel >= 0)
         {
             if (fuelSpendingTimer < fuelSpendingTime) fuelSpendingTimer += Time.deltaTime;
@@ -73,6 +76,13 @@ public class GyroGet : KineticProjectile
                 velocitySpendingTimer = 0;
             }
         }
+    }
+
+    void Movement()
+    {
+        Vector3 dir_ = direction.normalized;
+
+        transform.position += direction * velocity * Time.deltaTime;
     }
     /*
 

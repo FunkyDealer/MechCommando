@@ -15,6 +15,11 @@ public class GuidedMissile : KineticProjectile
     {
         base.Update();
 
+      
+    }
+
+    void FixedUpdate()
+    {
         direction = go.transform.position - this.transform.position;
         this.transform.position += direction * Time.deltaTime * velocity;
     }

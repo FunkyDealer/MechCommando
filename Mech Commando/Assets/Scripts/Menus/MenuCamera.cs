@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MenuCamera : MonoBehaviour
 {
-
+    Camera cam;
 
     void Awake()
     {
-
+        cam = GetComponent<Camera>();
     }
 
 
@@ -21,14 +21,18 @@ public class MenuCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
+        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
         if (hit.collider != null)
         {
             Debug.Log("Target Hit: " + hit.collider.gameObject.name);
-        } else
+        }
+        else
         {
             //Debug.Log("Nothing is being hit");
         }
+       // Debug.Log(cam.ScreenToWorldPoint(Input.mousePosition));
     }
 }

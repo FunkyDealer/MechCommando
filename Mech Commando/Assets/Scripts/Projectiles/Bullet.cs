@@ -25,9 +25,14 @@ public class Bullet : KineticProjectile
     protected override void Update()
     {
         base.Update();
+       
+
+
+    }
+
+    void FixedUpdate()
+    {
         movement();
-
-
     }
 
     void movement()

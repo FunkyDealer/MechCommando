@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Destroyable Objets\AntiAirGun.cs" />
      <Compile Include="Assets\Scripts\Enemies\AIMovementManager.cs" />
      <Compile Include="Assets\Scripts\Enemies\Drone.cs" />
      <Compile Include="Assets\Scripts\Enemies\SuicideDrone.cs" />
@@ -98,6 +99,8 @@
      <Compile Include="Assets\Scripts\Projectiles\Projectile.cs" />
      <Compile Include="Assets\Scripts\Radar.cs" />
      <Compile Include="Assets\Scripts\Tutorial Entity\Target.cs" />
+     <Compile Include="Assets\Scripts\Weapon Spawner\DropPod.cs" />
+     <Compile Include="Assets\Scripts\Weapon Spawner\WeaponSpawner.cs" />
      <Compile Include="Assets\Scripts\Weapons\LaserRiffle.cs" />
      <Compile Include="Assets\Scripts\Weapons\MiniGun.cs" />
      <Compile Include="Assets\Scripts\Weapons\Pistol\Pistol.cs" />
