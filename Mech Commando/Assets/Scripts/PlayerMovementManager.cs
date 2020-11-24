@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovementManager : MonoBehaviour
 {
+    [SerializeField]
+    MovementInfo info;
     CharacterController controller;
     Camera cam;
     [SerializeField]
@@ -51,7 +53,7 @@ public class PlayerMovementManager : MonoBehaviour
     float EnergySpendingTimer;
     [SerializeField]
     readonly float EnergySpendingTime = 0.05f;
-
+    public MovementInfo GetInfo => info;
     public delegate void UpdatePromptEvent(string promt);
     public static event UpdatePromptEvent onPromptUpdate;
 
@@ -68,6 +70,10 @@ public class PlayerMovementManager : MonoBehaviour
         dodgeButtonTimer = 0;
         dodgeDir = Vector3.zero;
         EnergySpendingTimer = 0;
+
+        info.position = transform.position;
+        Vector3 forward = transform.forward;
+        info.orientation = Mathf.Atan2(forward.x, forward.z);
     }
 
     // Start is called before the first frame update
@@ -112,7 +118,11 @@ public class PlayerMovementManager : MonoBehaviour
         else
         {
             dir.x = 0; dir.z = 0;
-        }     
+        }
+        info.orientation = Mathf.Atan2(this.transform.forward.x, this.transform.forward.z);
+        info.position = this.transform.position;
+        info.rotation = this.transform.rotation.z;
+        info.velocity = dir * currentSpeed;
     }
 
     void LateUpdate() //Runs after all other update functions
