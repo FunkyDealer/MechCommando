@@ -8,7 +8,7 @@ public class WeaponSpawner : MonoBehaviour
     bool activated;
     Transform DropPodPosition;
     [SerializeField]
-    GameObject WeaponPickup;
+    GameObject test;
     [SerializeField]
     GameObject dropPod;
 
@@ -52,7 +52,7 @@ public class WeaponSpawner : MonoBehaviour
 
         GameObject a = Instantiate(dropPod, DropPodPosition.position, Quaternion.identity);
         DropPod d = a.GetComponent<DropPod>();
-        d.weapon = WeaponPickup;
+        d.weapon = test;
         // g = a.GetComponent<>();
 
 

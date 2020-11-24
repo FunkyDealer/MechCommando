@@ -39,6 +39,7 @@ public class Enemy : MovingEntity
 
         this.manager = manager;
         manager.Enemies.Add(this);
+
     }
 
     public override void Die()

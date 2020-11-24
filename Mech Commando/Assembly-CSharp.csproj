@@ -69,7 +69,6 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\HUD\Base_Hud.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_Ammo.cs" />
-     <Compile Include="Assets\Scripts\HUD\Hud_AreaDisplay.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_Energy.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_Health.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_NanopakDisplayManager.cs" />
@@ -82,8 +81,6 @@
      <Compile Include="Assets\Scripts\Interactibles\Button.cs" />
      <Compile Include="Assets\Scripts\Interactibles\Interactible.cs" />
      <Compile Include="Assets\Scripts\Interactibles\WeaponPickup.cs" />
-     <Compile Include="Assets\Scripts\LimitingArea.cs" />
-     <Compile Include="Assets\Scripts\LocalObjectiveManager.cs" />
      <Compile Include="Assets\Scripts\Menus\M_Option.cs" />
      <Compile Include="Assets\Scripts\Menus\MenuCamera.cs" />
      <Compile Include="Assets\Scripts\Pickups\AmmoPickUp.cs" />

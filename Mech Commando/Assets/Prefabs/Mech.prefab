@@ -339,7 +339,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1079
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -511,8 +511,6 @@ MonoBehaviour:
   currentEnergy: 0
   maxEnergy: 100
   inControl: 0
-  inPlayableArea: 0
-  deathTime: 5
   EnergyRecoverDelay: 0.3
 --- !u!114 &6559262581109629948
 MonoBehaviour:
@@ -766,6 +764,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523581198115017669, guid: 49a4b27e607e5a7498b634c27d3e3961,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523581198115017671, guid: 49a4b27e607e5a7498b634c27d3e3961,
+        type: 3}
+      propertyPath: heatCost
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49a4b27e607e5a7498b634c27d3e3961, type: 3}

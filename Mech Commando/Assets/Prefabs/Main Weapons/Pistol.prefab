@@ -143,7 +143,7 @@ MonoBehaviour:
   fullName: Blaster
   isInfinite: 1
   heatState: 0
-  heatCost: 1
+  heatCost: 3
   countryOfOrigin: China
   fireDelay: 0.4
   projectile: {fileID: 5518181382730177825, guid: a74581a01581c1f489f0178861344cc6,
