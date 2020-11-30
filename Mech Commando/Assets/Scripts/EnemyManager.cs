@@ -6,6 +6,8 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField]
     public List<Enemy> Enemies;
+    private Player thePlayer;
+
 
     public delegate void SubscriptionHandler(EnemyManager manager);
     public static event SubscriptionHandler SubcribeSlaves;
@@ -14,6 +16,7 @@ public class EnemyManager : MonoBehaviour
     void Awake()
     {
         Enemies = new List<Enemy>();
+        thePlayer = FindObjectOfType<Player>();
     }
 
     // Start is called before the first frame update
@@ -27,4 +30,6 @@ public class EnemyManager : MonoBehaviour
     {
         
     }
+
+    public Player getPlayer() => thePlayer;
 }

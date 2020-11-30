@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Hud_Prompt : Base_Hud
 {
-
-
-
+       
     protected override void Awake()
     {
         base.Awake();

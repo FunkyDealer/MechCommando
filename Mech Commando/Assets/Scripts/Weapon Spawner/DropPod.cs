@@ -17,6 +17,7 @@ public class DropPod : MonoBehaviour
     [SerializeField]
     float Distance2SlowDown;
 
+    [SerializeField]
     float slowDownSpeed;
     bool fallen;
 
@@ -35,8 +36,7 @@ public class DropPod : MonoBehaviour
     void Start()
     {
         spawnPos = transform.Find("Spawn");
-        calcDistance();
-        slowDownSpeed = speed / 2;
+        calcDistance();;
         timer2Despawn = 0;
     }
 
@@ -71,13 +71,14 @@ public class DropPod : MonoBehaviour
 
     private void Movement()
     {
-        if (distance2Ground >= Distance2SlowDown)
+        if (distance2Ground <= Distance2SlowDown)
         {
-            if (speed > slowDownSpeed) speed -= 5 * Time.deltaTime;
+            if (speed > slowDownSpeed) speed -= 100 * Time.deltaTime;
+            Debug.Log(speed);
         }
         transform.position += Physics.gravity * speed * Time.deltaTime;
 
-        Debug.Log(distance2Ground);
+       // Debug.Log(distance2Ground);
     }
 
     float calcDistance()
@@ -87,7 +88,7 @@ public class DropPod : MonoBehaviour
         // This cast rays only against colliders in layer 10. (The Ground)
         RaycastHit hit;
         // Does the ray intersect any objects excluding the Ground layer
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1000, layerMask))
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 999999, layerMask))
         {           
             distance2Ground = Vector3.Distance(transform.position, hit.point);
         }

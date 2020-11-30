@@ -33,7 +33,9 @@ public class AnimController : MonoBehaviour
 
     void PlayAnim(string l)
     {
-        anim.SetBool("Open", true);
-
+        if (this.location == l)
+        {
+            anim.SetBool("Open", true);
+        }
     }
 }

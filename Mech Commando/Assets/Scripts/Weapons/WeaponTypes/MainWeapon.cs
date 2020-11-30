@@ -22,7 +22,7 @@ public class MainWeapon : Weapon
     protected float coolingDownInterval = 0.5f;
     protected float coolingDownIntervalTimer;
     protected float gunCoolingTimer;
-    protected float gunCoolingTime = 0.1f;
+    protected float gunCoolingTime = 0.025f;
     [SerializeField]
     protected int heatCost;
     public int GetMaxHeatLevel() => maxHeatLevel;
@@ -49,7 +49,7 @@ public class MainWeapon : Weapon
         overHeated = false;
         heatState = HeatState.NONE;
         coolingDownIntervalTimer = 0;
-        gunCoolingTime = 0;
+        gunCoolingTimer = 0;
     }
 
     // Start is called before the first frame update

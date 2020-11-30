@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerMovementManager : MonoBehaviour
 {
-    [SerializeField]
-    MovementInfo info;
     CharacterController controller;
     Camera cam;
     [SerializeField]
@@ -53,9 +51,17 @@ public class PlayerMovementManager : MonoBehaviour
     float EnergySpendingTimer;
     [SerializeField]
     readonly float EnergySpendingTime = 0.05f;
-    public MovementInfo GetInfo => info;
+
+    Vector3 slidingDir_;
+    bool sliding;
+    public float slopeForceRayLenght = 1f;
+    public float slopeForce = 1f;
+
     public delegate void UpdatePromptEvent(string promt);
     public static event UpdatePromptEvent onPromptUpdate;
+
+
+
 
     // awake is the first thing to be called
     void Awake()
@@ -71,9 +77,9 @@ public class PlayerMovementManager : MonoBehaviour
         dodgeDir = Vector3.zero;
         EnergySpendingTimer = 0;
 
-        info.position = transform.position;
-        Vector3 forward = transform.forward;
-        info.orientation = Mathf.Atan2(forward.x, forward.z);
+        slidingDir_ = Vector3.zero;
+        sliding = false;
+
     }
 
     // Start is called before the first frame update
@@ -90,7 +96,7 @@ public class PlayerMovementManager : MonoBehaviour
     {
         if (player.isAlive())
         {
-            modifiers(); //Run, walk and sprint speed
+            if (!sliding) modifiers(); //Run, walk and sprint speed
             EnergyManagement(); //energy management when sprinting
             Movement(); //Main direction Calculations
             moveCharacter(dir); //Movement Calculations
@@ -118,11 +124,7 @@ public class PlayerMovementManager : MonoBehaviour
         else
         {
             dir.x = 0; dir.z = 0;
-        }
-        info.orientation = Mathf.Atan2(this.transform.forward.x, this.transform.forward.z);
-        info.position = this.transform.position;
-        info.rotation = this.transform.rotation.z;
-        info.velocity = dir * currentSpeed;
+        }     
     }
 
     void LateUpdate() //Runs after all other update functions
@@ -132,6 +134,8 @@ public class PlayerMovementManager : MonoBehaviour
         {
             Dodge();
         }
+
+       
     }
 
     void Interact()
@@ -213,7 +217,7 @@ public class PlayerMovementManager : MonoBehaviour
             jumping = false;
             dir.y = -1;
 
-            if (Input.GetButtonDown("Jump")) //Jumping when space is pressed
+            if (Input.GetButtonDown("Jump") && !sliding) //Jumping when space is pressed
             {
                 Jump();
             }
@@ -221,6 +225,7 @@ public class PlayerMovementManager : MonoBehaviour
         }
         else
         {
+            sliding = false;
             dir.y += (Physics.gravity.y * gravityScale * Time.deltaTime); //Gravity is applied if not grounded
         }
 
@@ -247,6 +252,12 @@ public class PlayerMovementManager : MonoBehaviour
     //Movement Calculations
     void moveCharacter(Vector3 d)
     {
+       if (sliding) controller.Move(new Vector3(
+       slidingDir_.x * currentSpeed * Time.deltaTime,
+       0,
+       slidingDir_.z * currentSpeed * Time.deltaTime
+       ));
+
 
         controller.Move(new Vector3(
         d.x * currentSpeed * Time.deltaTime,
@@ -323,7 +334,35 @@ public class PlayerMovementManager : MonoBehaviour
     }
 
 
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Vector3 n = hit.normal;
+        if (Vector3.Angle(n, Vector3.up) > 40f) //r.normal != Vector3.up
+        {
+            Vector3 v1 = Vector3.Cross(Vector3.up, n);
+            Vector3 v2 = Vector3.Cross(v1, Vector3.up);
 
+            slidingDir_ = v2;
+            sliding = true;
+        }
+        else
+        {
+            slidingDir_ = Vector3.zero;
+            sliding = false;
+        }
+    }
+
+    private bool OnSlope()
+    {
+        if (jumping) return false;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, controller.height / 2 * slopeForceRayLenght))
+            if (hit.normal != Vector3.up) return true;
+
+        return false;
+    }
 
 
     //End of Class

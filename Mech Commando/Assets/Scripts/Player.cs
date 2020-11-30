@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,10 @@ public class Player : MovingEntity
     public readonly int healthPacksQtMax = 3;
     bool alive;
     public bool inControl;
+    public bool inPlayableArea;
+    float deathTimer;
+    [SerializeField]
+    float deathTime;
 
     public delegate void PlayerDeath();
     public static event PlayerDeath onDeath;
@@ -34,6 +39,9 @@ public class Player : MovingEntity
     public delegate void PrimaryFire();
     public static event PrimaryFire onPrimaryFire;
 
+    public delegate void UpdatePlayableAreaHud(float timer, bool outsideMap, bool alive);
+    public static event UpdatePlayableAreaHud onAreaUpdate;
+
     //Energy
     float EnergyRecoverTimer;
     [SerializeField]
@@ -43,7 +51,9 @@ public class Player : MovingEntity
     float EnergyRecoverDelay = 0.3f; //Time before energy starts recovering again
     float EnergyRecoverDelayTimer;
 
+    PlayerMovementManager movManager;
 
+    
 
     protected override void Awake()
     {
@@ -55,6 +65,8 @@ public class Player : MovingEntity
         canRecoverEnergy = true;
         EnergyRecoverTimer = 0;
         currentShield = 0;
+        inPlayableArea = true;
+        deathTimer = deathTime;
     }
 
     // Start is called before the first frame update
@@ -63,13 +75,16 @@ public class Player : MovingEntity
         onHealthUpdate(currentHealth, maxHealth);
         onEnergyUpdate(currentEnergy, maxEnergy);
         onShieldUpdate(currentShield, maxShield);
+        onAreaUpdate(deathTimer, inPlayableArea, alive);
         onNanopakUpdate(healthPacksQt);
 
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (alive && inControl)
         {
             recoverEnergy();
@@ -80,7 +95,26 @@ public class Player : MovingEntity
                 useHealthPack();
             }
 
+            PlayableArea();
         }
+    }
+
+    private void PlayableArea()
+    {
+       if (!inPlayableArea)
+        {
+            
+            if (deathTimer >= 0) deathTimer -= Time.deltaTime;
+            else
+            {
+                deathTimer = 0;
+                Die();                         
+            }            
+        } else
+        {
+            deathTimer = deathTime;
+        }
+        onAreaUpdate(deathTimer, inPlayableArea, alive);
     }
 
     public bool isAlive() => alive;
@@ -160,7 +194,9 @@ public class Player : MovingEntity
 
     public override void Die()
     {
-
+        currentHealth = 0;
+        alive = false;
+        inControl = false;
         Debug.Log($"Player Died");
 
     }

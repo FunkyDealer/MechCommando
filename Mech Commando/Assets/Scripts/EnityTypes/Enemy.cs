@@ -11,8 +11,11 @@ public class Enemy : MovingEntity
     [SerializeField]
     protected int accuracy;
 
-    AIMovementManager movementManager;
-    EnemyManager manager;
+
+    //AI
+    protected AIMovementManager movementManager;
+    protected EnemyManager manager;
+    protected Entity currentTarget;
 
     protected override void Awake()
     {
@@ -20,18 +23,26 @@ public class Enemy : MovingEntity
 
         movementManager = GetComponent<AIMovementManager>();
         EnemyManager.SubcribeSlaves += SubcribeToManager;
+
+
+        //AI
+        currentTarget = null;
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        
+        base.Start();
+
+
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
+
+
     }
 
 
@@ -39,7 +50,6 @@ public class Enemy : MovingEntity
 
         this.manager = manager;
         manager.Enemies.Add(this);
-
     }
 
     public override void Die()
@@ -47,6 +57,9 @@ public class Enemy : MovingEntity
         base.Die();
         manager.Enemies.Remove(this);
     }
+
+
+    public EnemyManager getManager() => manager;
 
 
 }
