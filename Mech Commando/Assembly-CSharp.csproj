@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\AI\MovementInfo.cs" />
      <Compile Include="Assets\Scripts\AI\Steering Behaviours Scripts\Idle.cs" />
      <Compile Include="Assets\Scripts\AI\Steering Behaviours Scripts\Seek.cs" />
+     <Compile Include="Assets\Scripts\AI\Steering Behaviours Scripts\seek_distance.cs" />
      <Compile Include="Assets\Scripts\AI\Steering.cs" />
      <Compile Include="Assets\Scripts\AI\SteeringAndWeight.cs" />
      <Compile Include="Assets\Scripts\AI\SteeringBehaviour.cs" />
@@ -112,6 +113,7 @@
      <Compile Include="Assets\Scripts\Projectiles\Projectile.cs" />
      <Compile Include="Assets\Scripts\Radar.cs" />
      <Compile Include="Assets\Scripts\Tutorial Entity\Target.cs" />
+     <Compile Include="Assets\Scripts\WallBombHolo.cs" />
      <Compile Include="Assets\Scripts\Weapon Spawner\DropPod.cs" />
      <Compile Include="Assets\Scripts\Weapon Spawner\WeaponSpawner.cs" />
      <Compile Include="Assets\Scripts\Weapons\LaserRiffle.cs" />

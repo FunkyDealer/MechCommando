@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuicideDrone :  Enemy
+public class SuicideDrone : Enemy
 {
-    [SerializeField]
-    float rangeToAttack;
 
+    enum SD_State
+    {
+        Idle,
+        Seek
+     }
+    SD_State currentState;
 
     protected override void Awake()
     {
@@ -22,9 +26,8 @@ public class SuicideDrone :  Enemy
     {
         base.Start();
 
-        currentTarget = manager.getPlayer();
 
-        movementManager.selectCurrentBehaviour("Idle");
+        changeState(SD_State.Idle);
     }
 
     // Update is called once per frame
@@ -42,15 +45,27 @@ public class SuicideDrone :  Enemy
     {
         base.Die();
 
+
     }
 
 
     void checkDistanceToTarget()
     {
-        if (Vector3.Distance(transform.position, currentTarget.transform.position) <= rangeToAttack)
+        if (Vector3.Distance(transform.position, currentTarget.transform.position) <= radarRange)
         {
-            movementManager.selectCurrentBehaviour("Seek");
+            changeState(SD_State.Seek);
+           
+           
         }
+    }
+
+
+
+    void changeState(SD_State newState)
+    {
+        currentState = newState;
+        movementManager.selectCurrentBehaviour(currentState.ToString());
+        Debug.Log($"State of ${gameObject.name} AI changed to {currentState.ToString()}");
     }
 
 

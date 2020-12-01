@@ -70,8 +70,9 @@ public class Player : MovingEntity
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         onHealthUpdate(currentHealth, maxHealth);
         onEnergyUpdate(currentEnergy, maxEnergy);
         onShieldUpdate(currentShield, maxShield);

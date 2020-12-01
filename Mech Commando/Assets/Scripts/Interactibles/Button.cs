@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Button : Interactible
 {
-    bool active;
+    protected bool active;
     [SerializeField]
-    ButtonBehaviour behaviour;
+    protected ButtonBehaviour behaviour;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         active = true;
     }
@@ -27,7 +27,8 @@ public class Button : Interactible
             base.Interact(actor);
             behaviour.Run();
             Debug.Log("Button Pressed");
-            active = false;
+            active = false;            
         }
     }
+
 }

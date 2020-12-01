@@ -17,6 +17,7 @@ public class Seek : SteeringBehaviour
 
         Steering steering = new Steering();
         steering.linear = direction * maxAccel;
+        steering.dir = direction;
 
         return steering;
     }

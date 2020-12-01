@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 8585057805835553695}
   - component: {fileID: 8585057805835553694}
   - component: {fileID: 8585057805835553681}
-  - component: {fileID: 8585057805835553680}
   m_Layer: 0
   m_Name: Light Walker (1)
   m_TagString: Enemy
@@ -210,22 +209,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   entityName: Light Walker
+  info:
+    position: {x: 0, y: 0, z: 0}
+    orientation: 0
+    velocity: {x: 0, y: 0, z: 0}
+    rotation: 0
   speed: 2
   damageOutput: 5
   movementType: 1
   accuracy: 1
---- !u!114 &8585057805835553680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8585057805835553683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24d236a10417fae4287c7b39cebc3f28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8585057806604366777
 GameObject:
   m_ObjectHideFlags: 0

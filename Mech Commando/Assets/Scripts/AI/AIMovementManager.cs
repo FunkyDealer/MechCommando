@@ -43,7 +43,8 @@ public class AIMovementManager : MonoBehaviour
         // radianos para graus
         info.orientation = AuxMethods.NormAngle(info.orientation);
         transform.rotation = Quaternion.identity;
-        transform.Rotate(transform.up, info.orientation * Mathf.Rad2Deg);
+        //  transform.Rotate(transform.up, info.orientation * Mathf.Rad2Deg);
+        transform.forward = -steering.dir;
         transform.position = info.position;
     }
 
@@ -59,6 +60,7 @@ public class AIMovementManager : MonoBehaviour
                     currentBehaviour = behaviour;
                 }
             }
+           
 
             currentSteeringBehaviour = Instantiate(currentSteeringBehaviour);
             currentSteeringBehaviour.Init();

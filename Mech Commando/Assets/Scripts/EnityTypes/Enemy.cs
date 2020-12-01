@@ -11,6 +11,8 @@ public class Enemy : MovingEntity
     [SerializeField]
     protected int accuracy;
 
+    [SerializeField]
+    protected float radarRange;
 
     //AI
     protected AIMovementManager movementManager;
@@ -34,7 +36,7 @@ public class Enemy : MovingEntity
     {
         base.Start();
 
-
+        currentTarget = manager.getPlayer();
     }
 
     // Update is called once per frame
