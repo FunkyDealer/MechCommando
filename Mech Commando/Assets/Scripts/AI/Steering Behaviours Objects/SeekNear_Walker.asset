@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: SeekNear_Walker
   m_EditorClassIdentifier: Assembly-CSharp::seekdistance
-  Name: SeekNear
+  Name: SeekNear_Walker
   maxAccel: 3

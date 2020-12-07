@@ -15,9 +15,9 @@ public class Enemy : MovingEntity
     protected float radarRange;
 
     //AI
-    protected AIMovementManager movementManager;
+    public AIMovementManager movementManager;
     protected EnemyManager manager;
-    protected Entity currentTarget;
+    public Entity currentTarget;
 
     protected override void Awake()
     {
@@ -28,7 +28,7 @@ public class Enemy : MovingEntity
 
 
         //AI
-        currentTarget = null;
+        //currentTarget = null;
     }
 
     // Start is called before the first frame update
@@ -36,7 +36,7 @@ public class Enemy : MovingEntity
     {
         base.Start();
 
-        currentTarget = manager.getPlayer();
+      //  currentTarget = manager.getPlayer();
     }
 
     // Update is called once per frame

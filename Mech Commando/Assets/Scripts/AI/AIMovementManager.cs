@@ -5,17 +5,18 @@ using UnityEngine;
 public class AIMovementManager : MonoBehaviour
 {
     [SerializeField]
+    public List<SteeringBehaviour> behaviourList;
     //SteeringBehaviour steeringBehaviour;
-    List<SteeringBehaviour> behaviourList;
+    
     SteeringBehaviour currentSteeringBehaviour;
-    [SerializeField,Range(0,1)]
+    [SerializeField, Range(0, 1)]
     float linearDrag = 0.95f, angularDrag = 0.95f;
     string currentBehaviour;
-    
+
     void Awake()
     {
         currentBehaviour = null;
-        
+
     }
 
     void Start()
@@ -25,10 +26,10 @@ public class AIMovementManager : MonoBehaviour
 
     // Update is called once per frame
     public void Run(MovementInfo target, MovementInfo info, float maxVelocity)
-    {        
-        info.position    += info.velocity * Time.deltaTime;
+    {
+        info.position += info.velocity * Time.deltaTime;
         info.orientation += info.rotation * Time.deltaTime;
-     
+
         info.velocity *= linearDrag;
         info.rotation *= angularDrag;
 
@@ -60,7 +61,7 @@ public class AIMovementManager : MonoBehaviour
                     currentBehaviour = behaviour;
                 }
             }
-           
+
 
             currentSteeringBehaviour = Instantiate(currentSteeringBehaviour);
             currentSteeringBehaviour.Init();

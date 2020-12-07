@@ -9,13 +9,13 @@ public class SuicideDrone : Enemy
     {
         Idle,
         Seek
-     }
+    }
     SD_State currentState;
 
     protected override void Awake()
     {
         base.Awake();
-               
+
 
     }
 
@@ -27,18 +27,19 @@ public class SuicideDrone : Enemy
         base.Start();
 
 
-        changeState(SD_State.Idle);
+       changeState(SD_State.Idle);
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
+   
 
+          checkDistanceToTarget();
+       
 
-        checkDistanceToTarget();
-
-        movementManager.Run(currentTarget.GetInfo, info, speed);    
+        movementManager.Run(currentTarget.GetInfo, info, speed);
     }
 
     public override void Die()
@@ -54,8 +55,8 @@ public class SuicideDrone : Enemy
         if (Vector3.Distance(transform.position, currentTarget.transform.position) <= radarRange)
         {
             changeState(SD_State.Seek);
-           
-           
+
+
         }
     }
 

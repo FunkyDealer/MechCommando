@@ -16,7 +16,7 @@ public class Walker : Enemy
     {
         base.Awake();
 
-               
+
     }
 
     // Start is called before the first frame update
@@ -24,9 +24,9 @@ public class Walker : Enemy
     {
         base.Start();
 
-        
 
-        changeState(Walker_State.Idle);
+
+        // changeState(Walker_State.Idle);
     }
 
     // Update is called once per frame
@@ -34,8 +34,14 @@ public class Walker : Enemy
     {
         base.Update();
 
+        DTAction _SEEK = new DTAction(() => movementManager.selectCurrentBehaviour("SeekNear_Walker"));
+        DTAction _IDLE = new DTAction(() => movementManager.selectCurrentBehaviour("Idle"));
+        //DTAction _Shoot 
+        //DTCondition _Shoot = new DTCondition(() => Vector3.Distance(info.position, currentTarget.transform.position) < 50, Disparar, _IDLE);
+        DTCondition _distancia = new DTCondition(() => Vector3.Distance(info.position, currentTarget.transform.position) < 2000, _SEEK, _IDLE);
+        _distancia.Tarefa();
 
-        checkDistanceToTarget();
+        // checkDistanceToTarget();
 
         movementManager.Run(currentTarget.GetInfo, info, speed);
     }
