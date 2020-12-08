@@ -106,6 +106,7 @@
     <Compile Include="Assets\Scripts\LocalObjectiveManager.cs" />
     <Compile Include="Assets\Scripts\Menus\M_Option.cs" />
     <Compile Include="Assets\Scripts\Menus\MenuCamera.cs" />
+    <Compile Include="Assets\Scripts\Menus\NewGameButton.cs" />
     <Compile Include="Assets\Scripts\Pickups\AmmoPickUp.cs" />
     <Compile Include="Assets\Scripts\Pickups\PickUp.cs" />
     <Compile Include="Assets\Scripts\Pickups\ShieldPickUp.cs" />
