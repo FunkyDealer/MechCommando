@@ -23,6 +23,7 @@ public class Entity : MonoBehaviour
         info.position = transform.position;
         Vector3 forward = transform.forward;
         info.orientation = Mathf.Atan2(forward.x, forward.z);
+        info.Object = this;
     }
 
     // Start is called before the first frame update

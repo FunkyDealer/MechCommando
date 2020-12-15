@@ -74,7 +74,6 @@ public class DropPod : MonoBehaviour
         if (distance2Ground <= Distance2SlowDown)
         {
             if (speed > slowDownSpeed) speed -= 100 * Time.deltaTime;
-            Debug.Log(speed);
         }
         transform.position += Physics.gravity * speed * Time.deltaTime;
 

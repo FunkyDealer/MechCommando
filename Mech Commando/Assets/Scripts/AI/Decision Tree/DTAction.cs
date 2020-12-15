@@ -12,7 +12,7 @@ public class DTAction : DTNode
         this.action = action;
     }
 
-    public override void Tarefa()
+    public override void Task()
     {
         action();
     }

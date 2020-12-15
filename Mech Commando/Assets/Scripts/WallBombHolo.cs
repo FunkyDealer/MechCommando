@@ -12,6 +12,7 @@ public class WallBombHolo : Button
     protected override void Start()
     {
         base.Start();
+        behaviour.Initialize();
     }
 
     // Update is called once per frame
@@ -24,7 +25,7 @@ public class WallBombHolo : Button
     {
         if (active)
         {
-            //behaviour.Run();
+            behaviour.Run();
             Debug.Log("bomb planted");
             spawnBomb();
             active = false;

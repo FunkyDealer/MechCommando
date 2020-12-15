@@ -14,15 +14,15 @@ public class DTCondition : DTNode
         trueNode = tChild;
         falseNode = fChild;
     }
-    public override void Tarefa()
+    public override void Task()
     {
         if (condition())
         {
-            trueNode.Tarefa();
+            trueNode.Task();
         }
         else
         {
-            falseNode.Tarefa();
+            falseNode.Task();
         }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Ground
+  - AINode
   layers:
   - Default
   - TransparentFX

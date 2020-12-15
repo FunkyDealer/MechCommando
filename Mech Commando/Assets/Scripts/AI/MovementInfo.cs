@@ -13,4 +13,6 @@ public class MovementInfo
     public Vector3 velocity;
     // Rotation direction and speed
     public float rotation;
+
+    public object Object;
 }

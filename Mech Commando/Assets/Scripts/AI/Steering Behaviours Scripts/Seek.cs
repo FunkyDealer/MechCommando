@@ -10,15 +10,19 @@ public class Seek : SteeringBehaviour
     override public Steering GetSteering(MovementInfo npc, MovementInfo target)
     {
         // Direction Vector, From npc to target
-        Vector3 direction = target.position - npc.position;
-
+       Vector3 direction = target.position - npc.position;
+        Vector3 lookDir = direction;
+      //  direction.y = -1;
         //direction.Normalize();
 
 
         Steering steering = new Steering();
         steering.linear = direction * maxAccel;
-        steering.dir = direction;
+        steering.dir = lookDir;
 
         return steering;
     }
+
+
+
 }

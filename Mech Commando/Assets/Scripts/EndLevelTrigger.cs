@@ -8,6 +8,11 @@ public class EndLevelTrigger : MonoBehaviour
     [SerializeField]
     string nextScene;
 
+    [SerializeField]
+    GameObject completeCanvas;
+    [SerializeField]
+    ButtonBehaviour behaviour;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +33,24 @@ public class EndLevelTrigger : MonoBehaviour
             Player p = other.gameObject.GetComponent<Player>();
             p.inControl = false;
 
-            SceneManager.LoadScene(nextScene);
+            RemoveCanvas();
+
+            GameObject c = Instantiate(completeCanvas, Vector3.zero, Quaternion.identity);
+            ActionTimer a = c.GetComponent<ActionTimer>();
+            a.behaviour = behaviour;
         }
+    }
+
+    //Removes all canvas fom game
+    void RemoveCanvas()
+    {
+        Canvas[] a = FindObjectsOfType<Canvas>();
+
+        foreach (var c in a)
+        {
+            Destroy(c.gameObject);
+        }
+
     }
 
 

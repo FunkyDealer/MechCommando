@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 6559262581109629830}
   - component: {fileID: 6559262581109629949}
   - component: {fileID: 6559262581109629948}
-  - component: {fileID: 6559262581109629951}
+  - component: {fileID: 2548768940764443474}
   m_Layer: 8
   m_Name: Mech
   m_TagString: Player
@@ -506,6 +506,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   entityName: 
+  info:
+    position: {x: 0, y: 0, z: 0}
+    orientation: 0
+    velocity: {x: 0, y: 0, z: 0}
+    rotation: 0
   speed: 0
   maxShield: 100
   currentEnergy: 0
@@ -534,7 +539,7 @@ MonoBehaviour:
   dodgeSpeed: 500
   slopeForceRayLenght: 1
   slopeForce: 1
---- !u!114 &6559262581109629951
+--- !u!114 &2548768940764443474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -543,12 +548,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6559262581109629831}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cd944cb3cf9d8f46b0c6a4b8f472e37, type: 3}
+  m_Script: {fileID: 11500000, guid: 24110d8bdb7517c4cb7155f174bbb310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentPrimaryAmmo: 0
   maxTargetDistance: 1000
-  minTargetDistance: 40
+  minTargetDistance: 100
 --- !u!1 &6559262581772952887
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,8 +657,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6559262582178444147}
   m_LocalRotation: {x: -0.013087589, y: -0.017450953, z: -0.0002284453, w: 0.999762}
-  m_LocalPosition: {x: 0.4, y: -0.4, z: 0.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.15, y: -0.14, z: 0.33}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 6559262582498918416}
   m_Father: {fileID: 6559262581021813837}
@@ -768,6 +773,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523581198115017671, guid: 49a4b27e607e5a7498b634c27d3e3961,
+        type: 3}
+      propertyPath: heatCost
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49a4b27e607e5a7498b634c27d3e3961, type: 3}

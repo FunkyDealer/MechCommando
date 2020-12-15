@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class DTNode : MonoBehaviour
+public abstract class DTNode
 {
-    public abstract void Tarefa();
+    public abstract void Task();
 }

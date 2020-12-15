@@ -106,13 +106,15 @@ GameObject:
   - component: {fileID: 2716644625153459105}
   - component: {fileID: 2716644625153459106}
   - component: {fileID: 2716644625153459107}
+  - component: {fileID: 971783243}
+  - component: {fileID: 971783244}
   m_Layer: 0
   m_Name: Suicide Drone
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2716644625153459111
 Transform:
   m_ObjectHideFlags: 0
@@ -202,11 +204,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 80
-  entityName: 
-  speed: 6
+  entityName: Suicide Drone
+  info:
+    position: {x: 0, y: 0, z: 0}
+    orientation: 0
+    velocity: {x: 0, y: 0, z: 0}
+    rotation: 0
+  speed: 50
   damageOutput: 0
   movementType: 0
   accuracy: 0
+  radarRange: 500
+  currentState: 0
+  chargeDis: 200
+  ExplosionDis: 10
+--- !u!143 &971783243
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2716644625153459116}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 0.99999994
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &971783244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2716644625153459116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff2a32a4670f1743951a91cb0ba0b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behaviourList:
+  - {fileID: 11400000, guid: 90b80430180d0984ebe96e357b345e01, type: 2}
+  - {fileID: 11400000, guid: bbcc784d31ab3ea4a91d6d6a2cef9bcf, type: 2}
+  - {fileID: 11400000, guid: 2474c318c6b6fa34d8c107e59d485f42, type: 2}
+  linearDrag: 0.95
+  angularDrag: 0.95
 --- !u!1 &2716644625797029188
 GameObject:
   m_ObjectHideFlags: 0

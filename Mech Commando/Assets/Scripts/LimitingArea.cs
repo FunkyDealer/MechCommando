@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class LimitingArea : MonoBehaviour
 {
+    Player p;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        p = null;
     }
 
     // Update is called once per frame
@@ -20,7 +22,16 @@ public class LimitingArea : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Player p = other.gameObject.GetComponent<Player>();
+            if (p == null) p = other.gameObject.GetComponent<Player>();
+
+            p.inPlayableArea = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
             p.inPlayableArea = true;
         }
     }
@@ -30,7 +41,6 @@ public class LimitingArea : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Player p = other.gameObject.GetComponent<Player>();
             p.inPlayableArea = false;
         }
     }

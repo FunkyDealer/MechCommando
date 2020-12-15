@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     bool pause;
+    Player p;
 
     void Awake()
     {
@@ -15,17 +16,21 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        p = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (Input.GetButtonDown("Pause"))
+        if (p.isAlive() && p.inControl)
         {
-            if (pause) unPauseGame();
-            else pauseGame();
+
+            if (Input.GetButtonDown("Pause"))
+            {
+                if (pause) unPauseGame();
+                else pauseGame();
+            }
+
         }
 
 
@@ -45,5 +50,6 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         pause = false;
     }
+
 
 }
