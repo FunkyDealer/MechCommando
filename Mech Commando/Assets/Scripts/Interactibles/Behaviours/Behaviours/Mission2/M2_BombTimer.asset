@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec13f25abee35348a44485644bc2756, type: 3}
+  m_Name: M2_BombTimer
+  m_EditorClassIdentifier: 
+  timer2Spawn: {fileID: 3429701103070396812, guid: 39f966c200f810e4da1d2718fdcfb9a3,
+    type: 3}
+  timerLenght: 120
+  timerText: Bomb
