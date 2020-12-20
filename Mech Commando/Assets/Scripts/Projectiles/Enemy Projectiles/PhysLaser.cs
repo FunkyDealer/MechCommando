@@ -63,7 +63,13 @@ public class PhysLaser : KineticProjectile
     void CheckColision()
     {        
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, direction, out hit, size / 2))
+
+        // Bit shift the index of the layer (8) to get a bit mask
+        int layerMask = 1 << 8;
+
+        layerMask = ~layerMask;
+
+        if (Physics.Raycast(transform.position, direction, out hit, size / 2, layerMask))
         {
             if (hit.collider)
             {

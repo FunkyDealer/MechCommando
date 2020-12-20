@@ -4,5 +4,26 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/TestLevel.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Menus/Campaign Menu.unity
+    guid: 657e2efaed6e30345943c82b9c852274
+  - enabled: 1
+    path: Assets/Scenes/Menus/Mission Select.unity
+    guid: 7887938a86a84f34eb9c972b039c461e
+  - enabled: 1
+    path: Assets/Scenes/Menus/Credits Menu.unity
+    guid: 4c9550f512abfdc43a6892b066a9a7dc
+  - enabled: 1
+    path: Assets/Scenes/Menus/Main Menu.unity
+    guid: 9dca2b67c5c07434ab5923ce9c3e73ef
+  - enabled: 1
+    path: Assets/Scenes/Mission1.unity
+    guid: dcafedc1e87af2b47a0efc600cd2c4eb
+  - enabled: 1
+    path: Assets/Scenes/Mission2.unity
+    guid: d19a2683268197d4e8b30809a7e62490
   m_configObjects: {}

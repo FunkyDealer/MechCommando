@@ -16,6 +16,11 @@ public class GyroGet : KineticProjectile
     [SerializeField]
     float velocitySpendingTime;
 
+    [SerializeField]
+    GameObject explosion;
+    [SerializeField]
+    int explosionSize;
+
     protected override void Awake()
     {
         base.Awake();
@@ -23,14 +28,14 @@ public class GyroGet : KineticProjectile
         rigidBody = GetComponent<Rigidbody>();
         rigidBody.useGravity = false;
         fuelSpendingTimer = 0;
-
+       // transform.right = direction;
     }
 
     // Start is called before the first frame update
     void Start()
     {
 
-        transform.right = direction;
+        
 
     }
 
@@ -38,18 +43,20 @@ public class GyroGet : KineticProjectile
     protected override void Update()
     {
         base.Update();
-        movement();
 
+        FuelManagement();
         if (fuel <= 0) rigidBody.useGravity = true;
 
     }
 
-    void movement()
+    void FixedUpdate()
     {
-        Vector3 dir_ = direction.normalized;
+        Movement();
+    }
 
+    void FuelManagement()
+    {
 
-        transform.position += direction * velocity * Time.deltaTime;
         if (fuel >= 0)
         {
             if (fuelSpendingTimer < fuelSpendingTime) fuelSpendingTimer += Time.deltaTime;
@@ -70,6 +77,13 @@ public class GyroGet : KineticProjectile
             }
         }
     }
+
+    void Movement()
+    {
+        Vector3 dir_ = direction.normalized;
+
+        transform.position += direction * velocity * Time.deltaTime;
+    }
     /*
 
         */
@@ -77,20 +91,29 @@ public class GyroGet : KineticProjectile
     void OnCollisionEnter(Collision collision)
     {
         ContactPoint contact = collision.contacts[0];
-        Vector3 position = contact.point;
-        // Instantiate(explosionPrefab, position, rotation);
 
         hitEntity = collision.transform.gameObject.GetComponent<Entity>();
 
-        Die();    
+        Die(contact.point);    
 
     }
 
 
-    protected override void Die()
+    protected override void Die(Vector3 contactPoint)
     {
-        if (hitEntity != null) damageEntity();
-       // Debug.Log("Destroyed");
+        
+
+        GameObject e = Instantiate(explosion, contactPoint, Quaternion.identity);
+        Explosion E = e.GetComponent<Explosion>();
+        E.maxDamage = damage;
+        E.maxVisualSize = explosionSize;
+
+        if (hitEntity != null)
+        {
+            damageEntity();
+            E.addHitEntity(hitEntity);
+        }
+
         Destroy(gameObject);
 
     }

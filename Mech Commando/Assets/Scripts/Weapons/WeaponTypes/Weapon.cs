@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-
-
+    
     [SerializeField]
     protected int maxAmmo;
     [SerializeField]
@@ -32,5 +31,8 @@ public class Weapon : MonoBehaviour
     {
         
     }
+
+
+
 
 }

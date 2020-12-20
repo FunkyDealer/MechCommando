@@ -5,27 +5,21 @@ using UnityEngine;
 public class SpecialWeapon : Weapon
 {
     protected bool isLocked;
-    [SerializeField]
-    Transform camera;
-    AutoAim mira;
-    GameObject projectile;
-    void Start()
+
+    public virtual void Start()
     {
-        mira = new AutoAim();
-        mira.nos = camera;
+
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-        mira.Update();
+
     }
 
-    void Disparo()
+    public virtual void Shoot()
     {
-        GameObject a = Instantiate(projectile, this.transform.position, Quaternion.identity);
-        AntiTankMissile tankMissile = a.GetComponent<AntiTankMissile>();
-        tankMissile.go = mira.GetCloser();
+
 
     }
 }

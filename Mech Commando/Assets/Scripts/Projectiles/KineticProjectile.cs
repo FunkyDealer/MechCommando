@@ -33,4 +33,11 @@ public class KineticProjectile : Projectile
         Destroy(gameObject);
 
     }
+
+    protected virtual void Die(Vector3 contactPoint)
+    {
+
+        Destroy(gameObject);
+
+    }
 }

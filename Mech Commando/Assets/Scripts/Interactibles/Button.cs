@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Button : Interactible
 {
-    bool active;
+    protected bool active;
+    [SerializeField]
+    protected List<ButtonBehaviour> behaviours;
+
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         active = true;
+        foreach (var b in behaviours)
+        {
+            b.Initialize();
+        }
     }
 
     // Update is called once per frame
@@ -24,8 +31,14 @@ public class Button : Interactible
         {
             base.Interact(actor);
 
-            Debug.Log("Button Pressed");
-            active = false;
+            foreach (var b in behaviours)
+            {                
+                b.Run();
+            }
+
+            //Debug.Log("Button Pressed");
+            active = false;            
         }
     }
+
 }

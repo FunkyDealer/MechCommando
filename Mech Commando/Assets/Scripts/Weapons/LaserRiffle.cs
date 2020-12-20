@@ -18,10 +18,7 @@ public class LaserRiffle : MainWeapon, IMainWeapon
     {
         base.Update();
 
-        if (!canFirePrimary && fireDelayTimer < fireDelay) fireDelayTimer += Time.deltaTime;
-        else { canFirePrimary = true; }
-
-        if (firingPrimary && canFirePrimary) PrimaryFire();
+       if (firingPrimary) PrimaryFire();
     }
 
     public override void PrimaryFireStart(WeaponManager weaponManager)
@@ -47,11 +44,12 @@ public class LaserRiffle : MainWeapon, IMainWeapon
 
     private void PrimaryFire()
     {
-        if (canFirePrimary)
+        if (!overHeated && canFirePrimary)
         {
             // Debug.Log($"Primary Weapon Firing: Primary Fire");
             fireDelayTimer = 0;
             canFirePrimary = false;
+            heatUp();
 
             foreach (Transform s in ShootPlaces)
             {

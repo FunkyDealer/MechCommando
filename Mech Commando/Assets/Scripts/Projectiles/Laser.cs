@@ -7,7 +7,7 @@ public class Laser : HitScanProjectile
     [SerializeField]
     private int maxSize;
     private LineRenderer lr;
-
+       
     [SerializeField]
     private float LaserSpeed;
 
@@ -42,11 +42,11 @@ public class Laser : HitScanProjectile
     {
         Vector3 laserDir = end - start;
         laserDir.Normalize();
-        start += laserDir * LaserSpeed * Time.deltaTime;
+        start += laserDir * LaserSpeed * Time.deltaTime;        
         laserLenght = laserDir.magnitude;
         //if (laserLenght < 1) Destroy(gameObject);
         lr.SetPosition(0, start);
-
+        
 
     }
 
@@ -54,8 +54,14 @@ public class Laser : HitScanProjectile
     void calculateLaser()
     {
         lr.SetPosition(0, start);
+
+        // Bit shift the index of the layer (8) to get a bit mask
+        int layerMask = 1 << 8;
+
+        layerMask = ~layerMask;
+
         RaycastHit hit;
-        if (Physics.Raycast(start, direction, out hit, (direction * maxSize).magnitude))
+        if (Physics.Raycast(start, direction, out hit, (direction * maxSize).magnitude, layerMask))
         {
             if (hit.collider)
             {
@@ -65,7 +71,7 @@ public class Laser : HitScanProjectile
         }
         else
         {
-            // Debug.Log($"End Position: {direction * 10}");
+           // Debug.Log($"End Position: {direction * 10}");
             end = start + direction * maxSize;
         }
         lr.SetPosition(1, end);

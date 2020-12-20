@@ -13,9 +13,9 @@ public class ShieldPickUp : PickUp
         {
             Player p = other.gameObject.GetComponent<Player>();
 
-            if (p.CurrentArmor() < p.MaxArmor())
+            if (p.CurrentShield() < p.MaxShield())
             {
-                p.increaseArmor(ammount);
+                p.increaseShield(ammount);
                 Destroy(gameObject);
             }
 
