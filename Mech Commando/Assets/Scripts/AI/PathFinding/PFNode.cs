@@ -38,7 +38,7 @@ public class PFNode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (manager != null && manager.debug) drawDebugConnections();
     }
 
 
@@ -68,10 +68,26 @@ public class PFNode : MonoBehaviour
         Debug.Log("NPC entered the Node");
         if (e != null)
         {
-            
             e.GetNextPathTarget();
         }
-        
+    }
 
+    private void OnTriggerStay(Collider other)
+    {
+        Enemy e = other.gameObject.GetComponent<Enemy>();
+        Debug.Log("NPC entered the Node");
+        if (e != null)
+        {
+            if (e.GetCurrentTarget() == this) e.GetNextPathTarget();
+
+        }
+    }
+
+    private void drawDebugConnections()
+    {
+        foreach (var c in hConnections)
+        {
+            Debug.DrawLine(this.transform.position, c.Key.gameObject.transform.position, Color.cyan, 0.1f);
+        }
     }
 }

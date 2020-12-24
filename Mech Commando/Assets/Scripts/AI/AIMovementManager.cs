@@ -29,16 +29,16 @@ public class AIMovementManager : MonoBehaviour
     // Update is called once per frame
     public void Run(MovementInfo target, MovementInfo info, float maxVelocity)
     {
-       // MoveController(target, info, maxVelocity);
+      
 
-      MoveByHand(target, info, maxVelocity);
+      Move(target, info, maxVelocity);
 
     }
 
-    void MoveByHand(MovementInfo target, MovementInfo AiInfo, float maxVelocity)
+    void Move(MovementInfo target, MovementInfo AiInfo, float maxVelocity)
     {
         AiInfo.position += AiInfo.velocity * Time.deltaTime;
-        AiInfo.orientation += AiInfo.rotation * Time.deltaTime;
+        AiInfo.orientation += AiInfo.orientation * Time.deltaTime;
 
         AiInfo.velocity *= linearDrag;
         AiInfo.rotation *= angularDrag;
@@ -54,49 +54,15 @@ public class AIMovementManager : MonoBehaviour
         // Radians to dregrees
         AiInfo.orientation = AuxMethods.NormAngle(AiInfo.orientation);
         transform.rotation = Quaternion.identity;
-        //  transform.Rotate(transform.up, info.orientation * Mathf.Rad2Deg);
-        transform.forward = -steering.dir;
+        //transform.Rotate(transform.up, AiInfo.orientation * Mathf.Rad2Deg);
+        if (steering.dir != Vector3.zero) transform.forward = steering.dir;
+
         //  transform.position = info.position;
         transform.position += AiInfo.velocity * Time.deltaTime;
 
 
     }
 
-    void MoveController(MovementInfo target, MovementInfo info, float maxVelocity)
-    {
-        info.orientation += info.rotation * Time.deltaTime;
-
-        info.velocity *= linearDrag;
-        info.rotation *= angularDrag;
-
-        // Update Velocity from steering
-        Steering steering = currentSteeringBehaviour.GetSteering(info, target);
-        info.velocity += steering.linear;
-        info.rotation += steering.angular;
-
-        //Controlers
-        controller.Move(new Vector3(
-        info.velocity.x * Time.deltaTime,
-        0,
-        info.velocity.z * Time.deltaTime
-        ));
-
-            //Gravity
-            controller.Move(new Vector3(
-            0,
-            info.velocity.y * Time.deltaTime,
-            0));
-
-        info.position = transform.position;
-
-        info.velocity = Vector3.ClampMagnitude(info.velocity, maxVelocity);
-
-        // Radians to dregrees
-        info.orientation = AuxMethods.NormAngle(info.orientation);
-
-        transform.rotation = Quaternion.identity;
-        transform.forward = -steering.dir;
-    }
 
     public void selectCurrentBehaviour(string behaviour)
     {

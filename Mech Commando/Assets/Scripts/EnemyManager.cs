@@ -9,6 +9,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private Player thePlayer;
 
+    [SerializeField]
+    public List<Patrol> Patrols;
+
+    public bool debug;
 
     public delegate void SubscriptionHandler(EnemyManager manager);
     public static event SubscriptionHandler SubcribeSlaves;
@@ -23,7 +27,7 @@ public class EnemyManager : MonoBehaviour
     {
         Enemies = new List<Enemy>();
         thePlayer = FindObjectOfType<Player>();
-
+        Patrols = new List<Patrol>();
     }
 
 
@@ -36,7 +40,7 @@ public class EnemyManager : MonoBehaviour
         }
         catch
         {
-            Debug.Log("no enemies or waypoints in this level");
+            Debug.Log("no enemies, waypoints or patrols in this level");
         }
 
         graph = new Graph(pathFindingNodes);
@@ -91,5 +95,24 @@ public class EnemyManager : MonoBehaviour
             Debug.Log($"closest node is {closestNode.gameObject.name}");
         }
         return closestNode;
+    }
+
+    public Patrol GetClosestPatrol(MovementInfo actor)
+    {
+        int count = Patrols.Count;
+        if (count == 0) { return null; }
+        Patrol closestPatrol = Patrols[0];
+
+        if (count > 1)
+        {
+            Vector3 actorPos = actor.position;
+            float currentMinDistance = Vector3.Distance(actor.position, Patrols[0].transform.position);
+            foreach (var p in Patrols)
+            {
+                float distance = Vector3.Distance(actorPos, p.transform.position);
+                if (distance <= currentMinDistance) { currentMinDistance = distance; closestPatrol = p; };
+            }
+        }
+        return closestPatrol;
     }
 }

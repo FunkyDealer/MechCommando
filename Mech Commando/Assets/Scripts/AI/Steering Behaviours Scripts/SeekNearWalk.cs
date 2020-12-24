@@ -26,22 +26,19 @@ public class SeekNearWalk : SteeringBehaviour
         direction.y = 0;
         lookDir = direction;
 
-        if (AuxMethods.CompareDistanceSmaller(target.position, npc.position, minDistance))
+        if (AuxMethods.CompareDistanceSmaller(target.position, npc.position, minDistance)) //distance > minDistance
         {
-            lookDir = -direction;
-
+            //lookDir = direction;
         }
-        else if (AuxMethods.CompareDistanceEqual(target.position, npc.position, minDistance))
+        else if (AuxMethods.CompareDistanceEqual(target.position, npc.position, minDistance)) //distance == minDistance
         {
             direction = Vector3.zero;
         }
         else
         {
             direction = -direction;
-            lookDir = direction;
+            //lookDir = direction;
         }
-
-
         // direction.y = -1;
 
         steering = new Steering();

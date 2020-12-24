@@ -176,10 +176,8 @@ public class Player : MovingEntity
         onNanopakUpdate(healthPacksQt);
     }
 
-    public override void getDamage(int damage)
+    public override void ReceiveDamage(int damage)
     {
-       // base.getDamage(damage);
-
         if (currentShield < 0) { //If player has shield
             int dmgHealth = damage / 5; //damage receive is 1/5
             currentHealth -= dmgHealth;

@@ -22,6 +22,7 @@ public class SuicideDrone : Enemy
     [SerializeField]
     float ExplosionDis;
 
+
     DTCondition initiateCon;
     DTCondition chargeCon;
     DTCondition explodeCon;
@@ -152,12 +153,15 @@ public class SuicideDrone : Enemy
         switch (state)
         {
             case SD_State.Idle:
+                currentPath.Clear();
                 behaviour = "Idle";
                 break;
             case SD_State.Seek:
+                currentPath.Clear();
                 behaviour = "SeekFly";
                 break;
             case SD_State.Charge:
+                currentPath.Clear();
                 behaviour = "Seek";
                 break;
             case SD_State.Moving:

@@ -20,12 +20,6 @@ public class MovingEntity : Entity
         base.Update();
     }
 
-    public virtual void getDamage(int damage)
-    {
-        currentHealth -= damage;
-        checkHealth();
-
-    }
 
     protected virtual void checkHealth()
     {

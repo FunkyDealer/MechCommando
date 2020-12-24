@@ -20,6 +20,7 @@ public class Enemy : MovingEntity
     protected MovementInfo currentTarget;
     protected MovementInfo player;
 
+    [SerializeField]
     protected List<PFNode> currentPath;
 
     protected override void Awake()
@@ -29,12 +30,7 @@ public class Enemy : MovingEntity
         currentPath = new List<PFNode>();
         movementManager = GetComponent<AIMovementManager>();
         EnemyManager.SubcribeSlaves += SubcribeToManager;
-        //dtConditions = new List<DTCondition>();
-        //AI
 
-        //MovementInfo p = manager.getPlayer().GetInfo;
-        // currentTarget = p;
-        // player = p;
         currentTarget = player;
     }
 
@@ -51,13 +47,11 @@ public class Enemy : MovingEntity
     {
         base.Update();
 
-        runMovementAI();
         movementManager.Run(currentTarget, info, speed);
     }
 
 
     protected virtual void SubcribeToManager(EnemyManager manager) {
-
         this.manager = manager;
         manager.Enemies.Add(this);
 
@@ -77,13 +71,7 @@ public class Enemy : MovingEntity
             manager.Enemies.Remove(this);
         }
     }
-
-
     public EnemyManager getManager() => manager;
-
-    protected void runMovementAI()
-    {
-    }
 
     public void ClearCurrentPath() => currentPath.Clear();
 
@@ -101,22 +89,19 @@ public class Enemy : MovingEntity
         RaycastHit hit;
         if (Physics.Raycast(pos, dir, out hit, distance, layerMask))
         {
-            Debug.DrawRay(pos, dir * distance, Color.green, 2,false);
+            Debug.DrawRay(pos, dir * distance, Color.green, 0.1f,false);
             if (hit.collider.gameObject.GetComponent<Player>() != null) isObstructed = false;
             else isObstructed = true;
-
         }
         else
         {    
-            Debug.DrawRay(pos, dir * distance, Color.red, 2, false);
+            Debug.DrawRay(pos, dir * distance, Color.red, 0.1f, false);
             isObstructed = false;
         }
-
-
         return isObstructed;
     }
 
-    public void GetNextPathTarget()
+    public virtual void GetNextPathTarget()
     {
         if (currentPath.Count > 1)
         {
@@ -132,6 +117,15 @@ public class Enemy : MovingEntity
         {
             //do nothing
         }
+    }
+
+    public PFNode GetCurrentTarget()
+    {
+        if (currentPath.Count > 0)
+        {
+            return currentPath[0];
+        }
+        else return null;
     }
 
 }

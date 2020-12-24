@@ -11,6 +11,8 @@ public static class AuxMethods {
     }
 
 
+
+
     //These 3 methods bellow are lighter than doing Vector3.Distance() > distance 
 
     public static bool CompareDistanceBigger(Vector3 pointA, Vector3 pointB, float dist)

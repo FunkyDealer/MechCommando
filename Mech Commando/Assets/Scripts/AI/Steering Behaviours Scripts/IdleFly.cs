@@ -37,6 +37,7 @@ public class IdleFly : SteeringBehaviour
         RaycastHit hit;
         if (Physics.Raycast(npc.position, Vector3.down, out hit, 1000, layerMask))
         {
+            Debug.DrawRay(npc.position, Vector3.down * hit.distance, Color.yellow);
             altitude = hit.point.y;
         }
         else
