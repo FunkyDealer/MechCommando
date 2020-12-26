@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     bool pause;
     Player p;
 
+    [SerializeField]
+    Canvas[] canvas;
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -17,6 +19,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         p = FindObjectOfType<Player>();
+
+        canvas = FindObjectsOfType<Canvas>();
     }
 
     // Update is called once per frame
@@ -33,8 +37,8 @@ public class GameManager : MonoBehaviour
 
         }
 
-
-
+        canvas[1].gameObject.SetActive(!pause);
+        canvas[2].gameObject.SetActive(pause);
     }
 
     void pauseGame()
