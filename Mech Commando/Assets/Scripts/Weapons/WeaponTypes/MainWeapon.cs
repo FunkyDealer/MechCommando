@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainWeapon : Weapon
 {
@@ -44,6 +45,8 @@ public class MainWeapon : Weapon
 
     protected List<Transform> ShootPlaces;
 
+    [SerializeField]
+    Canvas canvas;
     void onAwake()
     {
         overHeated = false;
@@ -58,7 +61,7 @@ public class MainWeapon : Weapon
         ShootPlaces = new List<Transform>();
         FindShootPlaces();
         canFirePrimary = true;
-        
+        canvas = FindObjectOfType<Canvas>();
     }
 
     // Update is called once per frame
@@ -113,20 +116,22 @@ public class MainWeapon : Weapon
             switch (heatState)
             {
                 case HeatState.HEATED:
-
+                    
                     if (coolingDownIntervalTimer < coolingDownInterval) coolingDownIntervalTimer += Time.deltaTime;
                     else
                     {
+                       
                         coolingDownIntervalTimer = 0;
                         heatState = HeatState.COOLING;
                     }
-
+                 
                     break;
                 case HeatState.COOLING:
 
                     if (gunCoolingTimer < gunCoolingTime) gunCoolingTimer += Time.deltaTime;
                     else
                     {
+                      
                         currentHeatLevel--;
                         gunCoolingTimer = 0;
                     }
@@ -141,13 +146,14 @@ public class MainWeapon : Weapon
             currentHeatLevel = 0;
             overHeated = false;
             canFirePrimary = true;
+            canvas.gameObject.SetActive(false);
         }
 
 
         if (overHeated)
         {
             PrimaryFireEnd();
-
+            canvas.gameObject.SetActive(true);
         }
     }
 
@@ -158,6 +164,7 @@ public class MainWeapon : Weapon
         heatState = HeatState.HEATED;
         if (currentHeatLevel >= maxHeatLevel)
         {
+            
             canFirePrimary = false;
             overHeated = true;
             currentHeatLevel = maxHeatLevel;

@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
         p = FindObjectOfType<Player>();
 
         canvas = FindObjectsOfType<Canvas>();
+        canvas[0].gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,9 +37,11 @@ public class GameManager : MonoBehaviour
             }
 
         }
-
+        
         canvas[1].gameObject.SetActive(!pause);
-        canvas[2].gameObject.SetActive(pause);
+        canvas[2].gameObject.SetActive(!pause);
+        canvas[3].gameObject.SetActive(pause);
+        
     }
 
     void pauseGame()

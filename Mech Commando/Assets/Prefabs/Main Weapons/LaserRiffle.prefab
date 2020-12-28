@@ -80,11 +80,13 @@ MonoBehaviour:
   simpleName: Enemy Laser Riffle
   fullName: Testing Enemy Phys Laser
   isInfinite: 1
+  heatState: 0
   heatCost: 2
   countryOfOrigin: Unknown
   fireDelay: 0.1
   projectile: {fileID: 3952739430727695812, guid: 2f3e95bbe6f13484890fbdffaeaf0d5b,
     type: 3}
+  canvas: {fileID: 0}
 --- !u!1001 &473690317999685868
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -50,11 +50,13 @@ MonoBehaviour:
   simpleName: Minigun
   fullName: Minigun
   isInfinite: 0
+  heatState: 0
   heatCost: 1
   countryOfOrigin: USA
   fireDelay: 0.1
   projectile: {fileID: 5972845553549956384, guid: 96c9ed01a4565d9418ebaa7b096993fd,
     type: 3}
+  canvas: {fileID: 0}
   state: 0
   spinTime: 0.5
   spinTimer: 0
