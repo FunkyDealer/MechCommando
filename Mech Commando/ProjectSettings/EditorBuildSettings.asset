@@ -26,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mission2.unity
     guid: d19a2683268197d4e8b30809a7e62490
+  - enabled: 1
+    path: Assets/Scenes/Menus/Lvl1Txt.unity
+    guid: 7525e145ec44adf4b893317c1e06781f
+  - enabled: 1
+    path: Assets/Scenes/Menus/Lvl2Txt.unity
+    guid: 00f5c515c84e2b846ac3efa1cbc4bcaf
+  - enabled: 1
+    path: Assets/Scenes/Menus/Lvl3Txt.unity
+    guid: 334909e748a039b4c8a5fd4ddd5205cf
   m_configObjects: {}
