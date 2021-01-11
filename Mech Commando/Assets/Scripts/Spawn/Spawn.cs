@@ -9,15 +9,20 @@ public class Spawn : ScriptableObject
     GameObject gameObject;
     void Start()
     {
+       
     }
 
     void Update()
     {
     }
 
-    public void Create(Vector3 POS)
+    public void Create(Vector3 POS , EnemyManager enemy)
     {
-        Instantiate(gameObject,POS,Quaternion.identity);
+        GameObject game;
+        Enemy e;
+        game = Instantiate(gameObject,POS,Quaternion.identity);
+        e = game.GetComponent<Enemy>();
+        e.SubcribeToManager(enemy);
     }
 }
 

@@ -16,7 +16,7 @@ public class Enemy : MovingEntity
 
     //AI
     protected AIMovementManager movementManager;
-    protected EnemyManager manager;
+    public EnemyManager manager;
     protected MovementInfo currentTarget;
     protected MovementInfo player;
 
@@ -51,7 +51,7 @@ public class Enemy : MovingEntity
     }
 
 
-    protected virtual void SubcribeToManager(EnemyManager manager) {
+    public virtual void SubcribeToManager(EnemyManager manager) {
         this.manager = manager;
         manager.Enemies.Add(this);
 

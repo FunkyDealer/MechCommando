@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Walker : Enemy
 {
-    enum W_State
+    public enum W_State
     {
         Idle,
         SeekNear,
@@ -211,7 +211,7 @@ public class Walker : Enemy
         return behaviour;
     }
 
-    void GetPathToTarget(W_State state)
+    public void GetPathToTarget(W_State state)
     {
         if (state == W_State.Moving)
         {
