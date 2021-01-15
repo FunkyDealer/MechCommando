@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Player : MovingEntity
 {
+    [SerializeField]
+    GameObject hub;
+    
+    float time = 0;
+
     int currentShield;
     [SerializeField]
     int maxShield;
@@ -89,6 +94,18 @@ public class Player : MovingEntity
     {
         base.Update();
 
+        if (hub.activeSelf)
+        {
+            time += Time.deltaTime;
+
+            if (time > 0.3f)
+            {
+                hub.SetActive(false);
+                time = 0;
+            }
+            Debug.Log(time);
+        }
+
         if (alive && inControl)
         {
             recoverEnergy();
@@ -104,15 +121,16 @@ public class Player : MovingEntity
 
     private void PlayableArea()
     {
-       if (!inPlayableArea)
-        {            
+        if (!inPlayableArea)
+        {
             if (deathTimer >= 0) deathTimer -= Time.deltaTime;
             else
             {
                 deathTimer = 0;
-                Die();                         
-            }            
-        } else
+                Die();
+            }
+        }
+        else
         {
             deathTimer = deathTime;
         }
@@ -133,7 +151,7 @@ public class Player : MovingEntity
         }
         catch (NullReferenceException)
         {
-            
+
         }
         canRecoverEnergy = false;
         EnergyRecoverDelayTimer = 0;
@@ -166,13 +184,13 @@ public class Player : MovingEntity
     {
         if (currentHealth < maxHealth)
         {
-            if (currentHealth + 50 > maxHealth) { currentHealth = maxHealth;}
-            else { currentHealth += 50;  }
+            if (currentHealth + 50 > maxHealth) { currentHealth = maxHealth; }
+            else { currentHealth += 50; }
             healthPacksQt--; Debug.Log($"NanoPak used, {healthPacksQt} remaining...");
         }
         else
         {
-          //  Debug.Log("Health already maxed");
+            //  Debug.Log("Health already maxed");
         }
         onNanopakUpdate(healthPacksQt);
         onHealthUpdate(currentHealth, maxHealth);
@@ -180,7 +198,8 @@ public class Player : MovingEntity
 
     public override void ReceiveDamage(int damage, Entity shooter)
     {
-        if (currentShield > 0) { //If player has shield
+        if (currentShield > 0)
+        { //If player has shield
             int dmgHealth = damage / 5; //damage receive is 1/5
             currentHealth -= dmgHealth;
             int dmgShield = (damage - damage / 5) / 2; //shield receives 80% / 2 damage
@@ -197,6 +216,9 @@ public class Player : MovingEntity
         onHealthUpdate(currentHealth, maxHealth);
         onShieldUpdate(currentShield, maxShield);
 
+
+        hub.SetActive(true);
+
     }
 
     public override void Die()
@@ -210,7 +232,8 @@ public class Player : MovingEntity
 
 
 
-    public void increaseHpak() {
+    public void increaseHpak()
+    {
         healthPacksQt++;
         onNanopakUpdate(healthPacksQt);
     }
@@ -247,6 +270,7 @@ public class Player : MovingEntity
                 if (k == color) alreadyIn = true;
             }
             if (!alreadyIn) keys.Add(color);
-        } else keys.Add(color);
+        }
+        else keys.Add(color);
     }
 }
