@@ -16,7 +16,7 @@ public class MainWeapon : Weapon
         HEATED,
         COOLING
     }
-    protected bool overHeated;
+    public bool overHeated;
     [SerializeField]
     protected HeatState heatState;
     protected float coolingDownInterval = 0.5f;
@@ -45,6 +45,9 @@ public class MainWeapon : Weapon
     protected List<Transform> ShootPlaces;
 
     protected Entity owner;
+
+    [SerializeField]
+    GameObject overHeatHud;
 
     void onAwake()
     {
@@ -163,9 +166,18 @@ public class MainWeapon : Weapon
             canFirePrimary = false;
             overHeated = true;
             currentHeatLevel = maxHeatLevel;
+            SpawnOverHeatHud();
+
         }
         // Debug.Log($"Primary Weapon Firing: Primary Fire");
     }
 
+
+    protected void SpawnOverHeatHud()
+    {
+        GameObject a = Instantiate(overHeatHud, Vector3.zero, Quaternion.identity);
+        OverHeatHud o = a.GetComponent<OverHeatHud>();
+        o.weapon = this;
+    }
 
 }

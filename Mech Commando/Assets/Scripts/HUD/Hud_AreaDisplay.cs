@@ -44,7 +44,7 @@ public class Hud_AreaDisplay : Base_Hud
 
 
             } else
-        {
+             {
             
             textDisplay.text = null;
             try

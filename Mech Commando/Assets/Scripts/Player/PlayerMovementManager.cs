@@ -60,6 +60,8 @@ public class PlayerMovementManager : MonoBehaviour
     public delegate void UpdatePromptEvent(string promt);
     public static event UpdatePromptEvent onPromptUpdate;
 
+    bool walking;
+    Animator animator;
 
 
 
@@ -79,8 +81,13 @@ public class PlayerMovementManager : MonoBehaviour
 
         slidingDir_ = Vector3.zero;
         sliding = false;
+        walking = false;
 
+        animator = GetComponentInChildren<Animator>();
+        AnimateWalking();
     }
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -100,6 +107,8 @@ public class PlayerMovementManager : MonoBehaviour
             EnergyManagement(); //energy management when sprinting
             Movement(); //Main direction Calculations
             moveCharacter(dir); //Movement Calculations
+            CheckForWalking();
+            AnimateWalking();
             
             //Dodging Timer
             if (!canDodge && dodgeCoolDown < dodgeCoolDownTime) dodgeCoolDown += Time.deltaTime;
@@ -156,6 +165,23 @@ public class PlayerMovementManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    void CheckForWalking()
+    {
+        Vector3 horizontalDir = new Vector3(dir.x, 0, dir.z);
+        if (dir.magnitude > 1.3f) {
+            walking = true;
+        }
+        else
+        {
+            walking = false;
+        }
+    }
+
+    void AnimateWalking()
+    {
+        animator.SetBool("Walking", walking);
     }
 
     void CheckInteract()

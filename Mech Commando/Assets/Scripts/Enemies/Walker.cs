@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Walker : Enemy
 {
-    public enum W_State
+    enum W_State
     {
         Idle,
         SeekNear,
@@ -38,6 +38,9 @@ public class Walker : Enemy
     bool patrols;
 
     Transform center;
+
+    [SerializeField]
+    GameObject explosion;
 
     //  [SerializeField]
     //  AnimationCurve velocity = new AnimationCurve();
@@ -167,6 +170,7 @@ public class Walker : Enemy
     public override void Die()
     {
         base.Die();
+        Instantiate(explosion, center.position, Quaternion.identity);
     }
 
     bool checkForIdle()
@@ -211,7 +215,7 @@ public class Walker : Enemy
         return behaviour;
     }
 
-    public void GetPathToTarget(W_State state)
+    void GetPathToTarget(W_State state)
     {
         if (state == W_State.Moving)
         {

@@ -40,6 +40,17 @@ public class WeaponSpawner : MonoBehaviour
         }
     }
 
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.tag == "Player" && !activated)
+    //    {
+    //        player = other.GetComponent<Player>();
+
+    //        SpawnDropPod();
+    //        activated = true;
+    //    }
+    //}
+
     //When the Primitive exits the collision, it will change Color
     private void OnTriggerExit(Collider other)
     {

@@ -10,7 +10,15 @@ public class SeekWalk : SteeringBehaviour
     override public Steering GetSteering(MovementInfo npc, MovementInfo target)
     {
         // Direction Vector, From npc to target
-        Vector3 direction = target.position - npc.position;
+        Vector3 direction = Vector3.forward;
+        try
+        {
+            direction = target.position - npc.position;
+        }
+        catch
+        {
+
+        }
         direction.y = 0;
       //  direction.y = getWalkAltitude(npc);
         Vector3 lookDir = direction;

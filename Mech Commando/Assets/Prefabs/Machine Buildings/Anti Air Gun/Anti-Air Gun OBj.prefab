@@ -245,6 +245,8 @@ MonoBehaviour:
     rotation: 0
   destroyedState: {fileID: 404241648446220958, guid: 3fd904a4ab318b747936df0f7d9ad8ca,
     type: 3}
+  Explosion: {fileID: 4787517821950598053, guid: 8a43e2d004b9f174fbde0934eb597698,
+    type: 3}
   location: 
 --- !u!65 &6069950326006765595
 BoxCollider:

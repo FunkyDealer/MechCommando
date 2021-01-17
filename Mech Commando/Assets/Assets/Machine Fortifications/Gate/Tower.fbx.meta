@@ -3,7 +3,17 @@ guid: ebaf4faa93728c441bb056024be0c5f7
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TowerMat
+    second: {fileID: 2100000, guid: 4d27adcc9e2dd7d469dbe1a568da67ec, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Tower_lambert2_AlbedoTransparency
+    second: {fileID: 2800000, guid: ade30fa894e368c4e85ec942047dce25, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0

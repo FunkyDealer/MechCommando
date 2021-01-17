@@ -25,11 +25,18 @@ public class MiniGun : MainWeapon, IMainWeapon
 
     Animator anim;
 
+    AudioSource shotSound;
+
+    AudioSource[] SpinSounds;
+
     void Awake()
     {
         spinTimer = 0;
         anim = GetComponentInChildren<Animator>();
         anim.SetBool("Spinning", false);
+        shotSound = GetComponent<AudioSource>();
+        GameObject spinSoundsObj = transform.Find("BarrelSpinSounds").gameObject;
+        SpinSounds = spinSoundsObj.GetComponents<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -54,13 +61,15 @@ public class MiniGun : MainWeapon, IMainWeapon
             case FiringState.StartSpin:
                 if (spinTimer < spinTime) spinTimer += Time.deltaTime;
                 else {
-                    if (primaryPressed) state = FiringState.Firing;
-                    else state = FiringState.Spinning;
+                    if (primaryPressed) { state = FiringState.Firing; }
+                    else { state = FiringState.Spinning; }
                  spinTimer = 0;
+                 StopStartSpinSound();
+                 PlaySpinSound();
                 }                
                 break;
             case FiringState.Spinning:
-
+                
                 break;
             case FiringState.Firing:
                  PrimaryFire();
@@ -84,9 +93,9 @@ public class MiniGun : MainWeapon, IMainWeapon
             case FiringState.Idle:
                 state = FiringState.StartSpin;
                 anim.SetBool("Spinning", true);
+               if (!overHeated) PlayStartSpinSound();
                 break;
-            case FiringState.StartSpin:
-                
+            case FiringState.StartSpin:                
                 break;
             case FiringState.Spinning:
                 PrimaryFire();
@@ -122,11 +131,11 @@ public class MiniGun : MainWeapon, IMainWeapon
                 break;
             case FiringState.Spinning:
                 if (secondaryPressed) { state = FiringState.Spinning; anim.SetBool("Spinning", true); }
-                else { state = FiringState.EndSpining; anim.SetBool("Spinning", false); }
+                else { state = FiringState.EndSpining; anim.SetBool("Spinning", false); StopSpinSound(); PlayEndSpinSound(); }
                     break;
             case FiringState.Firing:
                 if (secondaryPressed) { state = FiringState.Spinning; anim.SetBool("Spinning", true); }
-                else { state = FiringState.EndSpining; anim.SetBool("Spinning", false); }
+                else { state = FiringState.EndSpining; anim.SetBool("Spinning", false); StopSpinSound(); PlayEndSpinSound(); }
                     break;
             case FiringState.EndSpining:
 
@@ -142,7 +151,11 @@ public class MiniGun : MainWeapon, IMainWeapon
         switch (state)
         {
             case FiringState.Idle:
-                if (!primaryPressed) { state = FiringState.StartSpin; anim.SetBool("Spinning", true); }
+                if (!primaryPressed) {
+                    state = FiringState.StartSpin;
+                    anim.SetBool("Spinning", true);
+                    if (!overHeated) PlayStartSpinSound();
+                }
                     break;
             case FiringState.StartSpin:
                 //Stays as it is
@@ -154,7 +167,11 @@ public class MiniGun : MainWeapon, IMainWeapon
                 //Stays as it is
                 break;
             case FiringState.EndSpining:
-                if (!primaryPressed) { state = FiringState.StartSpin; anim.SetBool("Spinning", true); }
+                if (!primaryPressed) {
+                    state = FiringState.StartSpin;
+                    anim.SetBool("Spinning", true);
+                    PlaySpinSound();
+                }
                     break;
             default:
                 break;
@@ -170,10 +187,10 @@ public class MiniGun : MainWeapon, IMainWeapon
                 //Stays as it is
                 break;
             case FiringState.StartSpin:
-                if (!primaryPressed) { state = FiringState.EndSpining; anim.SetBool("Spinning", false); }
+                if (!primaryPressed) { state = FiringState.EndSpining; anim.SetBool("Spinning", false); StopStartSpinSound(); PlayEndSpinSound(); }
                     break;
             case FiringState.Spinning:
-                if (!primaryPressed) { state = FiringState.EndSpining; anim.SetBool("Spinning", false); }
+                if (!primaryPressed) { state = FiringState.EndSpining; anim.SetBool("Spinning", false); StopSpinSound(); PlayEndSpinSound(); }
                     break;
             case FiringState.Firing:
                 //Stays as it is
@@ -198,6 +215,7 @@ public class MiniGun : MainWeapon, IMainWeapon
             canFirePrimary = false;
             manager.currentPrimaryAmmo--;
             manager.updateAmmo();
+            shotSound.Play();
 
             foreach (Transform s in ShootPlaces)
             {
@@ -208,5 +226,31 @@ public class MiniGun : MainWeapon, IMainWeapon
                 b.shooter = manager.GetPlayer;
             }
         }
+    }
+
+
+    void PlayStartSpinSound()
+    {
+        SpinSounds[0].Play();
+    }
+
+    void StopStartSpinSound()
+    {
+        SpinSounds[0].Stop();
+    }
+
+    void PlaySpinSound()
+    {
+        SpinSounds[1].Play();
+    }
+
+    void StopSpinSound()
+    {
+        SpinSounds[1].Stop();
+    }
+
+    void PlayEndSpinSound()
+    {
+        SpinSounds[2].Play();
     }
 }

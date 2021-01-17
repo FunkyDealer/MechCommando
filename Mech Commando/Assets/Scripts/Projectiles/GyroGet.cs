@@ -21,6 +21,8 @@ public class GyroGet : KineticProjectile
     [SerializeField]
     int explosionSize;
 
+    AudioSource explosionSound;
+
     protected override void Awake()
     {
         base.Awake();
@@ -28,13 +30,15 @@ public class GyroGet : KineticProjectile
         rigidBody = GetComponent<Rigidbody>();
         rigidBody.useGravity = false;
         fuelSpendingTimer = 0;
+
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        explosionSound = GetComponent<AudioSource>();
 
-        
 
     }
 
@@ -56,7 +60,6 @@ public class GyroGet : KineticProjectile
 
     void FuelManagement()
     {
-
         if (fuel >= 0)
         {
             if (fuelSpendingTimer < fuelSpendingTime) fuelSpendingTimer += Time.deltaTime;
@@ -101,9 +104,7 @@ public class GyroGet : KineticProjectile
 
 
     protected override void Die(Vector3 contactPoint)
-    {
-        
-
+    {        
         GameObject e = Instantiate(explosion, contactPoint, Quaternion.identity);
         Explosion E = e.GetComponent<Explosion>();
         E.damage = damage;
@@ -115,6 +116,8 @@ public class GyroGet : KineticProjectile
             E.AddHitEntity(hitEntity);
         }
 
+        Debug.Log("gyro Explosions");
+        explosionSound.Play();
         Destroy(gameObject);
 
     }

@@ -224,7 +224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6559262580729614526}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 41.9, z: 0}
+  m_LocalPosition: {x: 0, y: 61.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6559262581109629946}
@@ -254,10 +254,10 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 500
+  far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 100
+  orthographic size: 1000
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 6559262581021813834}
   - component: {fileID: 6559262581021813835}
   - component: {fileID: 6559262581021813836}
+  - component: {fileID: 3426300548350813390}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -372,6 +373,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 10
+--- !u!95 &3426300548350813390
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6559262581021813832}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4007365c3c7a055498c197b8debdfe47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6559262581109629831
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +539,8 @@ MonoBehaviour:
   inPlayableArea: 0
   deathTime: 5
   EnergyRecoverDelay: 0.3
+  MechHead: {fileID: 6927722080652196778, guid: c8875d8b59bfac24caf1db5123a8fd23,
+    type: 3}
 --- !u!114 &6559262581109629948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,6 +664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6559262582178444146}
+  - component: {fileID: 7040193574921878242}
   m_Layer: 0
   m_Name: Weapon Place
   m_TagString: Untagged
@@ -664,6 +687,25 @@ Transform:
   m_Father: {fileID: 6559262581021813837}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -1.5, y: -2, z: 0}
+--- !u!95 &7040193574921878242
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6559262582178444147}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63ad2426f1061a0449e4c5afa30d8e83, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6559262582384011167
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,8 +750,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 4993198623666772877, guid: f693bef6dda97224482b87aec8b74c3e,
-    type: 3}
-  pauseCamera: {fileID: 8216050156471913442, guid: 38dc73bb667d5e7419f3fc45ba833976,
     type: 3}
 --- !u!1001 &7332374425499866068
 PrefabInstance:

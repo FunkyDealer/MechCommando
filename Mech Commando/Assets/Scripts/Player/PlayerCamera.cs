@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public float sensitivity = 10F;
+    float sensitivity = 10F;
     float rotationX = 0F;
     float rotationY = 0F;
     private float rotArrayX;
@@ -22,13 +22,14 @@ public class PlayerCamera : MonoBehaviour
         if (rb) rb.freezeRotation = true;
         playerMM = GetComponentInParent<PlayerMovementManager>();
         player = GetComponentInParent<Player>();
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-   
-       
+        sensitivity = SettingsManager.Instance.Sensivity();
+
 
         originalRotation = transform.localRotation;
     }
@@ -77,6 +78,7 @@ public class PlayerCamera : MonoBehaviour
             playerMM.rotatePlayer(xQuaternion);
 
         }
+        sensitivity = SettingsManager.Instance.Sensivity();
     }
 
 

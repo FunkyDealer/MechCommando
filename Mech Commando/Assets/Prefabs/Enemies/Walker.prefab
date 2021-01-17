@@ -75,8 +75,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9088629593368229651}
   m_LocalRotation: {x: -0, y: 0.9995723, z: -0, w: 0.029246226}
-  m_LocalPosition: {x: 0, y: 26.216553, z: 0}
-  m_LocalScale: {x: 7, y: -0.011788, z: 7}
+  m_LocalPosition: {x: 0, y: 47.6, z: 0}
+  m_LocalScale: {x: 100, y: -0.011788, z: 100}
   m_Children: []
   m_Father: {fileID: 8767370528772278439}
   m_RootOrder: 2
@@ -272,6 +272,8 @@ MonoBehaviour:
   shootTime: 1
   assignedPatrol: {fileID: 0}
   patrols: 1
+  explosion: {fileID: 4787517821950598053, guid: 96be3b2dd290c414793a794001379616,
+    type: 3}
 --- !u!1001 &9088629593288355660
 PrefabInstance:
   m_ObjectHideFlags: 0

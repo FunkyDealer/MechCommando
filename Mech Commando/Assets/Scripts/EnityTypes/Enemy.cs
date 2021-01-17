@@ -16,7 +16,7 @@ public class Enemy : MovingEntity
 
     //AI
     protected AIMovementManager movementManager;
-    public EnemyManager manager;
+    protected EnemyManager manager;
     protected MovementInfo currentTarget;
     protected MovementInfo player;
 
@@ -50,17 +50,15 @@ public class Enemy : MovingEntity
         movementManager.Run(currentTarget, info, speed);
     }
 
-
     public virtual void SubcribeToManager(EnemyManager manager) {
         this.manager = manager;
         manager.Enemies.Add(this);
 
         player = manager.getPlayer().GetInfo;
-    }
+    }    
 
     public override void Die()
-    {
-        base.Die();
+    {      
 
         if (manager == null)
         {
@@ -70,6 +68,7 @@ public class Enemy : MovingEntity
         {
             manager.Enemies.Remove(this);
         }
+        base.Die();
     }
     public EnemyManager getManager() => manager;
 

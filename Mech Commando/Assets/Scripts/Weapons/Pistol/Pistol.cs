@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Pistol : MainWeapon, IMainWeapon
 {
-
+    AudioSource ShotSound;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-
+        ShotSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -46,6 +46,7 @@ public class Pistol : MainWeapon, IMainWeapon
     {
         if (!overHeated && canFirePrimary)
         {
+            ShotSound.Play();
             heatUp();
            // Debug.Log($"Primary Weapon Firing: Primary Fire");
             fireDelayTimer = 0;

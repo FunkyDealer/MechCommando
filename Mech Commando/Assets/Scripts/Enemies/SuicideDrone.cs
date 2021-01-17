@@ -32,6 +32,8 @@ public class SuicideDrone : Enemy
     [SerializeField]
     GameObject explosionPrefab;
 
+    AudioSource explosionSound;
+
     protected override void Awake()
     {
         base.Awake();
@@ -49,6 +51,8 @@ public class SuicideDrone : Enemy
         chargeCon = new DTCondition(() => checkForCharge(), _CHARGE, moveCon);
         explodeCon = new DTCondition(() => checkForExplosion(), _EXPLODE, chargeCon);
 
+        GameObject explosionSoundObj = transform.Find("ExplosionFX").gameObject;
+        explosionSound = explosionSoundObj.GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -59,7 +63,6 @@ public class SuicideDrone : Enemy
         
         currentState = SD_State.Idle;
     }
-
 
     bool checkForInitiation()
     {
@@ -100,8 +103,6 @@ public class SuicideDrone : Enemy
         else return false;
     }
 
-
-
     // Update is called once per frame
     protected override void Update()
     {
@@ -129,9 +130,11 @@ public class SuicideDrone : Enemy
 
     public override void Die()
     {
+       
+        GameObject a = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Explosion e = a.GetComponent<Explosion>();
+        e.damage = damageOutput * 3; 
         base.Die();
-
-
     }
 
     void changeState(SD_State newState)
@@ -192,9 +195,7 @@ public class SuicideDrone : Enemy
 
     void Explode()
     {
-        GameObject a = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        Explosion e = a.GetComponent<Explosion>();
-        e.damage = damageOutput * 3;
+        explosionSound.Play();
         Die();
     }
 

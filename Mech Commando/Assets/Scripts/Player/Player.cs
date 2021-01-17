@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class Player : MovingEntity
 {
-    [SerializeField]
-    GameObject hub;
-    
-    float time = 0;
-
     int currentShield;
     [SerializeField]
     int maxShield;
@@ -27,6 +22,8 @@ public class Player : MovingEntity
     float deathTime;
 
     List<Color> keys;
+
+    Animator cameraAnimator;
 
     public delegate void PlayerDeath();
     public static event PlayerDeath onDeath;
@@ -60,7 +57,8 @@ public class Player : MovingEntity
 
     PlayerMovementManager movManager;
 
-
+    [SerializeField]
+    GameObject MechHead;
 
     protected override void Awake()
     {
@@ -75,6 +73,7 @@ public class Player : MovingEntity
         inPlayableArea = true;
         deathTimer = deathTime;
         keys = new List<Color>();
+        cameraAnimator = transform.Find("Main Camera").gameObject.GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -94,18 +93,6 @@ public class Player : MovingEntity
     {
         base.Update();
 
-        if (hub.activeSelf)
-        {
-            time += Time.deltaTime;
-
-            if (time > 0.3f)
-            {
-                hub.SetActive(false);
-                time = 0;
-            }
-            Debug.Log(time);
-        }
-
         if (alive && inControl)
         {
             recoverEnergy();
@@ -121,16 +108,15 @@ public class Player : MovingEntity
 
     private void PlayableArea()
     {
-        if (!inPlayableArea)
-        {
+       if (!inPlayableArea)
+        {            
             if (deathTimer >= 0) deathTimer -= Time.deltaTime;
             else
             {
                 deathTimer = 0;
-                Die();
-            }
-        }
-        else
+                Die();                         
+            }            
+        } else
         {
             deathTimer = deathTime;
         }
@@ -151,7 +137,7 @@ public class Player : MovingEntity
         }
         catch (NullReferenceException)
         {
-
+            
         }
         canRecoverEnergy = false;
         EnergyRecoverDelayTimer = 0;
@@ -184,13 +170,13 @@ public class Player : MovingEntity
     {
         if (currentHealth < maxHealth)
         {
-            if (currentHealth + 50 > maxHealth) { currentHealth = maxHealth; }
-            else { currentHealth += 50; }
+            if (currentHealth + 50 > maxHealth) { currentHealth = maxHealth;}
+            else { currentHealth += 50;  }
             healthPacksQt--; Debug.Log($"NanoPak used, {healthPacksQt} remaining...");
         }
         else
         {
-            //  Debug.Log("Health already maxed");
+          //  Debug.Log("Health already maxed");
         }
         onNanopakUpdate(healthPacksQt);
         onHealthUpdate(currentHealth, maxHealth);
@@ -198,17 +184,18 @@ public class Player : MovingEntity
 
     public override void ReceiveDamage(int damage, Entity shooter)
     {
-        if (currentShield > 0)
-        { //If player has shield
-            int dmgHealth = damage / 5; //damage receive is 1/5
+        if (currentShield > 0) { //If player has shield
+            int dmgHealth = damage / 4; //damage receive is 1/4
             currentHealth -= dmgHealth;
             int dmgShield = (damage - damage / 5) / 2; //shield receives 80% / 2 damage
             currentShield -= dmgShield;
             if (currentShield < 0) currentShield = 0;
+            if (dmgHealth >= 30) AnimateBigDamage();
         }
         else
         {
             currentHealth -= damage;
+            if (damage >= 30) AnimateBigDamage();
         }
 
         checkHealth();
@@ -216,9 +203,11 @@ public class Player : MovingEntity
         onHealthUpdate(currentHealth, maxHealth);
         onShieldUpdate(currentShield, maxShield);
 
+    }
 
-        hub.SetActive(true);
-
+    void AnimateBigDamage()
+    {
+        cameraAnimator.SetTrigger("BigDamage");
     }
 
     public override void Die()
@@ -226,14 +215,15 @@ public class Player : MovingEntity
         currentHealth = 0;
         alive = false;
         inControl = false;
-        Debug.Log($"Player Died");
-
+        //Debug.Log($"Player Died");
+        onDeath();
+        SpawnHead();
+        
     }
 
 
 
-    public void increaseHpak()
-    {
+    public void increaseHpak() {
         healthPacksQt++;
         onNanopakUpdate(healthPacksQt);
     }
@@ -270,7 +260,14 @@ public class Player : MovingEntity
                 if (k == color) alreadyIn = true;
             }
             if (!alreadyIn) keys.Add(color);
-        }
-        else keys.Add(color);
+        } else keys.Add(color);
     }
+
+    void SpawnHead()
+    {
+        Transform position = transform.Find("Main Camera");
+        Instantiate(MechHead, position.position, position.rotation);
+        Destroy(this.gameObject);
+    }
+
 }

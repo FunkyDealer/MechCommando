@@ -7,8 +7,12 @@ public class AntiAirGun : StaticEntity
     [SerializeField]
     GameObject destroyedState;
 
+    [SerializeField]
+    GameObject Explosion;
+
     LocalObjectiveManager manager;
     public string location;
+    Transform explosionSpawn;
 
     protected override void Awake()
     {
@@ -16,9 +20,9 @@ public class AntiAirGun : StaticEntity
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        
+        explosionSpawn = transform.Find("Top");
     }
 
     // Update is called once per frame
@@ -41,6 +45,7 @@ public class AntiAirGun : StaticEntity
     {
         base.Die();
         manager.Enemies.Remove(this);
+        Instantiate(Explosion, explosionSpawn.position, Quaternion.identity);
         Instantiate(destroyedState, transform.position, transform.rotation);
 
         Destroy(gameObject);

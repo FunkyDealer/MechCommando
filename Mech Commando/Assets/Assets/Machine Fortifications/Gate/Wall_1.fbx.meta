@@ -3,7 +3,22 @@ guid: 3da3e57fa4457c7489017e96a1740619
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MachineWallMat
+    second: {fileID: 2100000, guid: 0e4465ac362331c4da6d6aec626121e3, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Wall_1_lambert2_AlbedoTransparency
+    second: {fileID: 2800000, guid: e2d74f6c6a60b7848973b423bdd09217, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Wall_1_lambert2_Normal
+    second: {fileID: 2800000, guid: c7d9fa262e5af7644861dbbc8ba14d38, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0

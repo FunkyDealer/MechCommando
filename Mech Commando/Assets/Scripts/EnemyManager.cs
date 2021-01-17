@@ -79,7 +79,14 @@ public class EnemyManager : MonoBehaviour
     PFNode ClosestNode(MovementInfo actor)
     {
         PFNode closestNode = null;
-        Vector3 actorPos = actor.position;
+        Vector3 actorPos = Vector3.zero;
+        try
+        {
+            actorPos = actor.position;
+        } catch
+        {
+
+        }
 
         float currentMinDistance = 9999999;
 

@@ -55,27 +55,33 @@ public class MissionWayPoint : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        updateDistance();
-
-        Vector2 pos = mainCamera.WorldToScreenPoint(target.transform.position);
-
-        if (Vector3.Dot((target.transform.position - mainCamera.gameObject.transform.position), mainCamera.gameObject.transform.forward) < 0)
+        if (target != null)
         {
-            //target is behind the player
-            if (pos.x < Screen.width / 2)
-            {
-                pos.x = max.x;
-            }
-            else
-            {
-                pos.x = min.y;
-            }
-        } 
+            updateDistance();
 
-        pos.x = Mathf.Clamp(pos.x, min.x, max.x);
-        pos.y = Mathf.Clamp(pos.y, min.y, max.y);
+            Vector2 pos = mainCamera.WorldToScreenPoint(target.transform.position);
 
-        img.transform.position = pos;
+            if (Vector3.Dot((target.transform.position - mainCamera.gameObject.transform.position), mainCamera.gameObject.transform.forward) < 0)
+            {
+                //target is behind the player
+                if (pos.x < Screen.width / 2)
+                {
+                    pos.x = max.x;
+                }
+                else
+                {
+                    pos.x = min.y;
+                }
+            }
+
+            pos.x = Mathf.Clamp(pos.x, min.x, max.x);
+            pos.y = Mathf.Clamp(pos.y, min.y, max.y);
+
+            img.transform.position = pos;
+        } else
+        {
+            Destroy(gameObject);
+        }
     }
 
     protected void updateDistance()

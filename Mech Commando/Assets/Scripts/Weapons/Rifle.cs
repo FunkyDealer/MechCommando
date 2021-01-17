@@ -7,9 +7,12 @@ public class Rifle : MainWeapon, IMainWeapon
     bool firingPrimary;
     Animator anim;
 
+    AudioSource shotSound;
+
     void Awake()
     {
         anim = GetComponentInChildren<Animator>();
+        shotSound = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -68,6 +71,7 @@ public class Rifle : MainWeapon, IMainWeapon
             heatUp();
             anim.CrossFadeInFixedTime("Shooting", 0f);
             //anim.SetTrigger("Shoot");
+            shotSound.Play();
 
             foreach (Transform s in ShootPlaces)
             {
