@@ -12347,6 +12347,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a77fd453db9ef047b590b50cf3387f4, type: 3}
+--- !u!114 &614000549 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 152623986198456274, guid: 2a77fd453db9ef047b590b50cf3387f4,
+    type: 3}
+  m_PrefabInstance: {fileID: 614000548}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56d6ee0568bbf94780333f7f9d8fb80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &624015161
 GameObject:
   m_ObjectHideFlags: 0
@@ -33008,6 +33020,7 @@ MonoBehaviour:
   completeCanvas: {fileID: 3421898943692504458, guid: 88ce37378e83a3e40bb845eabd08adf8,
     type: 3}
   behaviour: {fileID: 11400000, guid: f75f4d318b848954299b2783699ddb8b, type: 2}
+  enemyManager: {fileID: 614000549}
 --- !u!65 &1634506527
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44282,7 +44295,7 @@ Transform:
   - {fileID: 1675769991}
   - {fileID: 817063766}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2093450227
 PrefabInstance:

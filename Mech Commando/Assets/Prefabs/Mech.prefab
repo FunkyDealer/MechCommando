@@ -372,7 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec90fe8acc8160469d5887a554255cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 10
 --- !u!95 &3426300548350813390
 Animator:
   serializedVersion: 3
@@ -541,6 +540,7 @@ MonoBehaviour:
   EnergyRecoverDelay: 0.3
   MechHead: {fileID: 6927722080652196778, guid: c8875d8b59bfac24caf1db5123a8fd23,
     type: 3}
+  HurtHud: {fileID: 5826344426561313312, guid: dc3effe188b2daf4599ef0bc2c39987f, type: 3}
 --- !u!114 &6559262581109629948
 MonoBehaviour:
   m_ObjectHideFlags: 0

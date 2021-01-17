@@ -64,6 +64,8 @@ MonoBehaviour:
   state: 0
   spinTime: 0.5
   spinTimer: 0
+  muzzleFlash: {fileID: 390916717434201771, guid: 8eb08e6cf9d35064db66043d57b1bb62,
+    type: 3}
 --- !u!82 &8093033047879527154
 AudioSource:
   m_ObjectHideFlags: 0

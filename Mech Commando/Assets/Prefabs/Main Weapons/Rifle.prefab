@@ -79,6 +79,8 @@ MonoBehaviour:
     type: 3}
   overHeatHud: {fileID: 6316419875387260113, guid: a18491e98aae8ad479576e129a5b6b1a,
     type: 3}
+  MuzzleFlash: {fileID: 390916717434201771, guid: 8eb08e6cf9d35064db66043d57b1bb62,
+    type: 3}
 --- !u!82 &7252227598685624584
 AudioSource:
   m_ObjectHideFlags: 0

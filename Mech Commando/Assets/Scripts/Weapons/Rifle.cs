@@ -9,6 +9,9 @@ public class Rifle : MainWeapon, IMainWeapon
 
     AudioSource shotSound;
 
+    [SerializeField]
+    GameObject MuzzleFlash;
+
     void Awake()
     {
         anim = GetComponentInChildren<Animator>();
@@ -72,9 +75,11 @@ public class Rifle : MainWeapon, IMainWeapon
             anim.CrossFadeInFixedTime("Shooting", 0f);
             //anim.SetTrigger("Shoot");
             shotSound.Play();
+            
 
             foreach (Transform s in ShootPlaces)
             {
+                Instantiate(MuzzleFlash, s.position, Quaternion.identity, s);
                 GameObject a = Instantiate(projectile, s.position, Quaternion.identity);                
                 GyroGet g = a.GetComponent<GyroGet>();
                 g.direction = s.forward;

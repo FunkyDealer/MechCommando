@@ -13,6 +13,9 @@ public class EndLevelTrigger : MonoBehaviour
     [SerializeField]
     ButtonBehaviour behaviour;
 
+    [SerializeField]
+    EnemyManager enemyManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,8 @@ public class EndLevelTrigger : MonoBehaviour
             GameObject c = Instantiate(completeCanvas, Vector3.zero, Quaternion.identity);
             ActionTimer a = c.GetComponent<ActionTimer>();
             a.behaviour = behaviour;
+
+            enemyManager.DestroyAllEnemies();
         }
     }
 

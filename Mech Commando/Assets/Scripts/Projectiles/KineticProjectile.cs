@@ -18,7 +18,6 @@ public class KineticProjectile : Projectile
     // Update is called once per frame
     protected virtual void Update()
     {
-
         if (lifeTimer < lifeTime) lifeTimer += Time.deltaTime;
         else
         {

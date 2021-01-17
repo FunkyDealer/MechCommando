@@ -2258,7 +2258,7 @@ MonoBehaviour:
     orientation: 0
     velocity: {x: 0, y: 0, z: 0}
     rotation: 0
-  speed: 50
+  speed: 100
   damageOutput: 30
   accuracy: 0
   radarRange: 500

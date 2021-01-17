@@ -59,7 +59,6 @@ public class Enemy : MovingEntity
 
     public override void Die()
     {      
-
         if (manager == null)
         {
             Debug.Log("this Enemy wasn't associated to any manager");
@@ -124,5 +123,6 @@ public class Enemy : MovingEntity
         }
         else return null;
     }
+
 
 }

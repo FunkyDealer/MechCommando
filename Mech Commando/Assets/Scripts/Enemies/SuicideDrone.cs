@@ -33,6 +33,7 @@ public class SuicideDrone : Enemy
     GameObject explosionPrefab;
 
     AudioSource explosionSound;
+    AudioClip explosionClip;
 
     protected override void Awake()
     {
@@ -53,6 +54,7 @@ public class SuicideDrone : Enemy
 
         GameObject explosionSoundObj = transform.Find("ExplosionFX").gameObject;
         explosionSound = explosionSoundObj.GetComponent<AudioSource>();
+        explosionClip = explosionSound.clip;
     }
 
     // Start is called before the first frame update
@@ -195,7 +197,13 @@ public class SuicideDrone : Enemy
 
     void Explode()
     {
+
         explosionSound.Play();
+
+        explosionSound.gameObject.transform.parent = null;
+        explosionSound.PlayOneShot(explosionClip);
+        Destroy(explosionSound.gameObject, explosionClip.length);
+
         Die();
     }
 

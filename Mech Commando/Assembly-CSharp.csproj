@@ -55,11 +55,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\EffectController.cs" />
-     <Compile Include="Assets\HudManager.cs" />
-     <Compile Include="Assets\HudOptionsManager.cs" />
-     <Compile Include="Assets\MechHead.cs" />
-     <Compile Include="Assets\OptionsMenuManager.cs" />
      <Compile Include="Assets\Scripts\AI\AIMovementManager.cs" />
      <Compile Include="Assets\Scripts\AI\BehaviourAndWeight.cs" />
      <Compile Include="Assets\Scripts\AI\Decision Tree\DTAction.cs" />
@@ -83,7 +78,9 @@
      <Compile Include="Assets\Scripts\AI\SteeringBehaviour.cs" />
      <Compile Include="Assets\Scripts\AnimController.cs" />
      <Compile Include="Assets\Scripts\AuxMethods.cs" />
+     <Compile Include="Assets\Scripts\DestroyTimer.cs" />
      <Compile Include="Assets\Scripts\Destroyable Objets\AntiAirGun.cs" />
+     <Compile Include="Assets\Scripts\EffectController.cs" />
      <Compile Include="Assets\Scripts\EndLevelTrigger.cs" />
      <Compile Include="Assets\Scripts\Enemies\Drone.cs" />
      <Compile Include="Assets\Scripts\Enemies\SuicideDrone.cs" />
@@ -104,6 +101,8 @@
      <Compile Include="Assets\Scripts\HUD\Hud_OverHeat.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_Prompt.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_Shield.cs" />
+     <Compile Include="Assets\Scripts\HudManager.cs" />
+     <Compile Include="Assets\Scripts\HudOptionsManager.cs" />
      <Compile Include="Assets\Scripts\Interactibles\Behaviours\ButtonBehaviour.cs" />
      <Compile Include="Assets\Scripts\Interactibles\Behaviours\ButtonBehavious\ChangeScreen.cs" />
      <Compile Include="Assets\Scripts\Interactibles\Behaviours\ButtonBehavious\CloseApplication.cs" />
@@ -117,6 +116,7 @@
      <Compile Include="Assets\Scripts\KeyComponent.cs" />
      <Compile Include="Assets\Scripts\LimitingArea.cs" />
      <Compile Include="Assets\Scripts\LocalObjectiveManager.cs" />
+     <Compile Include="Assets\Scripts\MechHead.cs" />
      <Compile Include="Assets\Scripts\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Menus\M_Option.cs" />
      <Compile Include="Assets\Scripts\Menus\MenuCamera.cs" />
@@ -129,6 +129,7 @@
      <Compile Include="Assets\Scripts\ObjectiveSystem\ObjectiveManager.cs" />
      <Compile Include="Assets\Scripts\ObjectiveSystem\ObjectiveTriggerStart.cs" />
      <Compile Include="Assets\Scripts\ObjectiveSystem\SubMissionWayPointStatic.cs" />
+     <Compile Include="Assets\Scripts\OptionsMenuManager.cs" />
      <Compile Include="Assets\Scripts\OverHeatHud.cs" />
      <Compile Include="Assets\Scripts\Patrol.cs" />
      <Compile Include="Assets\Scripts\PauseMenu.cs" />
@@ -151,9 +152,12 @@
      <Compile Include="Assets\Scripts\Projectiles\Laser.cs" />
      <Compile Include="Assets\Scripts\Projectiles\Projectile.cs" />
      <Compile Include="Assets\Scripts\Radar.cs" />
+     <Compile Include="Assets\Scripts\SettingsManager.cs" />
+     <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\Timers\ActionTimer.cs" />
      <Compile Include="Assets\Scripts\Timers\DeathTimer.cs" />
      <Compile Include="Assets\Scripts\Timers\Timer.cs" />
+     <Compile Include="Assets\Scripts\TriggerSpawner.cs" />
      <Compile Include="Assets\Scripts\Tutorial Entity\Target.cs" />
      <Compile Include="Assets\Scripts\WallBombHolo.cs" />
      <Compile Include="Assets\Scripts\Weapon Spawner\DropPod.cs" />
@@ -167,9 +171,6 @@
      <Compile Include="Assets\Scripts\Weapons\WeaponTypes\MainWeapon.cs" />
      <Compile Include="Assets\Scripts\Weapons\WeaponTypes\SpecialWeapon.cs" />
      <Compile Include="Assets\Scripts\Weapons\WeaponTypes\Weapon.cs" />
-     <Compile Include="Assets\SettingsManager.cs" />
-     <Compile Include="Assets\Spawner.cs" />
-     <Compile Include="Assets\TriggerSpawner.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

@@ -29,6 +29,9 @@ public class MiniGun : MainWeapon, IMainWeapon
 
     AudioSource[] SpinSounds;
 
+    [SerializeField]
+    GameObject muzzleFlash;
+
     void Awake()
     {
         spinTimer = 0;
@@ -219,6 +222,13 @@ public class MiniGun : MainWeapon, IMainWeapon
 
             foreach (Transform s in ShootPlaces)
             {
+                
+
+                GameObject o = Instantiate(muzzleFlash, s.position, Quaternion.identity, s);
+                Vector3 euler = o.transform.eulerAngles;
+                euler.z = Random.Range(0f, 360f);
+                o.transform.eulerAngles = euler;
+
                 GameObject a = Instantiate(projectile, s.position, Quaternion.identity);
                 Bullet b = a.GetComponent<Bullet>();
                 b.direction = s.forward;

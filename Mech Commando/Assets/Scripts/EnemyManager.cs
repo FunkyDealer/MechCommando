@@ -122,4 +122,12 @@ public class EnemyManager : MonoBehaviour
         }
         return closestPatrol;
     }
+
+    public void DestroyAllEnemies()
+    {
+        foreach (var e in Enemies)
+        {
+            e.gameObject.SetActive(false);
+        }
+    }
 }

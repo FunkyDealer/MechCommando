@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         pause = false;
     }
 
@@ -19,6 +20,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         p = transform.parent.gameObject.GetComponent<Player>();
+    }
+
+    void OnDestroy()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
@@ -34,9 +41,6 @@ public class GameManager : MonoBehaviour
             }
 
         }
-
-
-
     }
 
     public void pauseGame()
@@ -46,6 +50,7 @@ public class GameManager : MonoBehaviour
             p.inControl = false;
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             pause = true;
         }
     }
@@ -57,6 +62,7 @@ public class GameManager : MonoBehaviour
             p.inControl = true;
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             pause = false;
         }
     }

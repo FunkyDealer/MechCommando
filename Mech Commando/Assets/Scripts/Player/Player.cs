@@ -60,6 +60,9 @@ public class Player : MovingEntity
     [SerializeField]
     GameObject MechHead;
 
+    [SerializeField]
+    GameObject HurtHud;
+
     protected override void Awake()
     {
         alive = true;
@@ -190,14 +193,14 @@ public class Player : MovingEntity
             int dmgShield = (damage - damage / 5) / 2; //shield receives 80% / 2 damage
             currentShield -= dmgShield;
             if (currentShield < 0) currentShield = 0;
-            if (dmgHealth >= 30) AnimateBigDamage();
+            if (dmgHealth >= 30) AnimateBigDamage();            
         }
         else
         {
             currentHealth -= damage;
             if (damage >= 30) AnimateBigDamage();
         }
-
+        Instantiate(HurtHud);
         checkHealth();
 
         onHealthUpdate(currentHealth, maxHealth);

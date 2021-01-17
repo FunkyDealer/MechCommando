@@ -262,7 +262,7 @@ MonoBehaviour:
     velocity: {x: 0, y: 0, z: 0}
     rotation: 0
   speed: 50
-  damageOutput: 5
+  damageOutput: 10
   accuracy: 1
   radarRange: 500
   currentPath: []
