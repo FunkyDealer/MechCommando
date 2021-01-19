@@ -25,6 +25,6 @@ public class HudManager : MonoBehaviour
 
     void OnDeath()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

@@ -208,7 +208,7 @@ public class MiniGun : MainWeapon, IMainWeapon
     }
 
 
-    private void PrimaryFire()
+    protected override void PrimaryFire()
     {
         if (!overHeated && canFirePrimary && manager.currentPrimaryAmmo > 0)
         {
@@ -218,12 +218,11 @@ public class MiniGun : MainWeapon, IMainWeapon
             canFirePrimary = false;
             manager.currentPrimaryAmmo--;
             manager.updateAmmo();
+
             shotSound.Play();
 
             foreach (Transform s in ShootPlaces)
-            {
-                
-
+            {               
                 GameObject o = Instantiate(muzzleFlash, s.position, Quaternion.identity, s);
                 Vector3 euler = o.transform.eulerAngles;
                 euler.z = Random.Range(0f, 360f);
@@ -235,6 +234,8 @@ public class MiniGun : MainWeapon, IMainWeapon
                 b.damage = baseDamage;
                 b.shooter = manager.GetPlayer;
             }
+
+            base.PrimaryFire();
         }
     }
 

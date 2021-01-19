@@ -11,13 +11,15 @@ public class Hud_Energy : Base_Hud
 
     protected override void Awake()
     {
-        base.Awake();
         Player.onEnergyUpdate += GetEnergy;
+        base.Awake();
+        
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Awake();
         
     }
 

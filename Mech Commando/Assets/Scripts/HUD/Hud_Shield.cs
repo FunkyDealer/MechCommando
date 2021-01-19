@@ -6,19 +6,19 @@ using UnityEngine.UI;
 public class Hud_Shield : Base_Hud
 {
     int Shield;
-
-
-
+       
     protected override void Awake()
     {
-        base.Awake();
         Player.onShieldUpdate += GetShield;
+        base.Awake();
+        
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-
+        base.Start();
+        
     }
 
     void OnDestroy()

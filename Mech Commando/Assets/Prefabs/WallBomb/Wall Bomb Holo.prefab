@@ -89,8 +89,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2960514958453949674}
   - component: {fileID: 6738437661544180996}
-  - component: {fileID: 4705233989935257443}
   - component: {fileID: 832667603}
+  - component: {fileID: 4705233989935257443}
   m_Layer: 0
   m_Name: Wall Bomb Holo
   m_TagString: Untagged
@@ -126,23 +126,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.5147705, y: 5.21817, z: 3.1973877}
   m_Center: {x: 0, y: 2.58, z: 0}
---- !u!114 &4705233989935257443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2476430072665382480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34022d0e3ac64334faccb82eb6b3caa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prompt: Plant Bomb
-  behaviours:
-  - {fileID: 11400000, guid: fb81499c661c7fd4182761d5390b6fbb, type: 2}
-  - {fileID: 11400000, guid: 1e2b7567c14b10e4491dd80abc8b2487, type: 2}
-  Bomb: {fileID: 579205601475789445, guid: 583d0028591d7ff4fa8e4d94c4367c45, type: 3}
 --- !u!114 &832667603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,3 +144,20 @@ MonoBehaviour:
     type: 3}
   objectiveTarget: {fileID: 0}
   newObjectiveText: Reach the Extration Zone before the bomb explodes!
+--- !u!114 &4705233989935257443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2476430072665382480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34022d0e3ac64334faccb82eb6b3caa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prompt: Plant Bomb
+  behaviours:
+  - {fileID: 11400000, guid: fb81499c661c7fd4182761d5390b6fbb, type: 2}
+  - {fileID: 11400000, guid: 1e2b7567c14b10e4491dd80abc8b2487, type: 2}
+  Bomb: {fileID: 579205601475789445, guid: 583d0028591d7ff4fa8e4d94c4367c45, type: 3}

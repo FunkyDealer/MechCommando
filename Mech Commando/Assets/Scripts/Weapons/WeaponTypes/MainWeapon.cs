@@ -108,12 +108,19 @@ public class MainWeapon : Weapon
 
     }
 
+    protected virtual void PrimaryFire()
+    {
+
+
+        if (!isInfinite && manager.currentPrimaryAmmo == 0) manager.GetPlayer.MechSounds.PlayOutOfAmmonVoiceClip();        
+    }
+
 
 
 
     protected void updateHeat()
     {
-        if (currentHeatLevel > 0)
+        if (currentHeatLevel >= 0)
         {
             switch (heatState)
             {
@@ -125,7 +132,6 @@ public class MainWeapon : Weapon
                         coolingDownIntervalTimer = 0;
                         heatState = HeatState.COOLING;
                     }
-
                     break;
                 case HeatState.COOLING:
 
@@ -135,7 +141,6 @@ public class MainWeapon : Weapon
                         currentHeatLevel--;
                         gunCoolingTimer = 0;
                     }
-
                     break;         
             }     
         }
@@ -148,11 +153,9 @@ public class MainWeapon : Weapon
             canFirePrimary = true;
         }
 
-
         if (overHeated)
         {
             PrimaryFireEnd();
-
         }
     }
 
@@ -167,7 +170,7 @@ public class MainWeapon : Weapon
             overHeated = true;
             currentHeatLevel = maxHeatLevel;
             SpawnOverHeatHud();
-
+           if (heatState == HeatState.HEATED) manager.GetPlayer.MechSounds.PlayWeaponOverHeatVoiceClip();
         }
         // Debug.Log($"Primary Weapon Firing: Primary Fire");
     }

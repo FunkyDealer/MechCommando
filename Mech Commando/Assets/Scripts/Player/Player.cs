@@ -63,6 +63,11 @@ public class Player : MovingEntity
     [SerializeField]
     GameObject HurtHud;
 
+    [SerializeField]
+    public MechSoundManager MechSounds;
+
+    bool criticalDamage;
+
     protected override void Awake()
     {
         alive = true;
@@ -77,6 +82,7 @@ public class Player : MovingEntity
         deathTimer = deathTime;
         keys = new List<Color>();
         cameraAnimator = transform.Find("Main Camera").gameObject.GetComponent<Animator>();
+        criticalDamage = false;
     }
 
     // Start is called before the first frame update
@@ -176,6 +182,8 @@ public class Player : MovingEntity
             if (currentHealth + 50 > maxHealth) { currentHealth = maxHealth;}
             else { currentHealth += 50;  }
             healthPacksQt--; Debug.Log($"NanoPak used, {healthPacksQt} remaining...");
+            MechSounds.PlayNanoRepairClip();
+            if (MechSounds.warningSoundPlaying && currentHealth > 40) { MechSounds.EndWarningClip(); criticalDamage = false; }
         }
         else
         {
@@ -200,12 +208,15 @@ public class Player : MovingEntity
             currentHealth -= damage;
             if (damage >= 30) AnimateBigDamage();
         }
+
         Instantiate(HurtHud);
         checkHealth();
 
+        if (!criticalDamage && currentHealth <= 40 && currentHealth > 0) { MechSounds.PlayCriticalDamVoiceClip(); MechSounds.StartWarningClip(); criticalDamage = true; }
+
+
         onHealthUpdate(currentHealth, maxHealth);
         onShieldUpdate(currentShield, maxShield);
-
     }
 
     void AnimateBigDamage()
@@ -223,8 +234,6 @@ public class Player : MovingEntity
         SpawnHead();
         
     }
-
-
 
     public void increaseHpak() {
         healthPacksQt++;

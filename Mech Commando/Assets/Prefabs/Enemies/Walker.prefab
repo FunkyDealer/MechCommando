@@ -271,7 +271,7 @@ MonoBehaviour:
     type: 3}
   shootTime: 1
   assignedPatrol: {fileID: 0}
-  patrols: 1
+  patrols: 0
   explosion: {fileID: 4787517821950598053, guid: 96be3b2dd290c414793a794001379616,
     type: 3}
 --- !u!1001 &9088629593288355660

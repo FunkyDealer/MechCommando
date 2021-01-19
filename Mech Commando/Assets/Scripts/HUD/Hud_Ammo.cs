@@ -9,19 +9,22 @@ public class Hud_Ammo : Base_Hud
 
     protected override void Awake()
     {
-        base.Awake();
         WeaponManager.onAmmoUpdate += GetAmmo;
+        base.Awake();       
+    }
+
+
+
+    // Start is called before the first frame update
+    protected override void Start()
+    {
+        base.Start();
+        
     }
 
     void OnDestroy()
     {
         WeaponManager.onAmmoUpdate -= GetAmmo;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame

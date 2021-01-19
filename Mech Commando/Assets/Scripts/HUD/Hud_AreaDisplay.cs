@@ -8,13 +8,15 @@ public class Hud_AreaDisplay : Base_Hud
 
     protected override void Awake()
     {
-        base.Awake();
         Player.onAreaUpdate += GetText;
+        base.Awake();
+        
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();        
         warning = transform.Find("Warning").gameObject;
         warning.SetActive(false);
     }

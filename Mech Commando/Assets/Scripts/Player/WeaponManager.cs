@@ -152,6 +152,8 @@ public class WeaponManager : MonoBehaviour
         {
             currentPrimary.PrimaryFireStart(this);
             updateAmmo();
+            if (!currentPrimary.isInfinite && currentPrimaryAmmo == 0) player.MechSounds.PlayOutOfAmmonVoiceClip();
+            if (currentPrimary.overHeated) player.MechSounds.PlayWeaponOverHeatVoiceClip();
         }
     }
 

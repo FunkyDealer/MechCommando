@@ -9,24 +9,20 @@ public class Hud_NanopakDisplayManager : MonoBehaviour
 
     void Awake()
     {
-        Player.onNanopakUpdate += updateNanoPak;
         nanoPakDisplays = new RawImage[3];
         for (int i = 0; i < 3; i++)
         {
             nanoPakDisplays[i] = transform.Find($"Nanopak{i}").GetComponent<RawImage>();
             nanoPakDisplays[i].enabled = false;
         }
-
-        
-
+        Player.onNanopakUpdate += updateNanoPak;
     }
 
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
-
-
+               
     }
 
     // Update is called once per frame

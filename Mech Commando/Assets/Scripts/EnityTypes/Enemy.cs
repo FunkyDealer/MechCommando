@@ -27,7 +27,7 @@ public class Enemy : MovingEntity
     {
         base.Awake();
 
-        currentPath = new List<PFNode>();
+        
         movementManager = GetComponent<AIMovementManager>();
         EnemyManager.SubcribeSlaves += SubcribeToManager;
 
@@ -38,7 +38,7 @@ public class Enemy : MovingEntity
     protected override void Start()
     {
         base.Start();
-
+        currentPath = new List<PFNode>();
 
     }
 

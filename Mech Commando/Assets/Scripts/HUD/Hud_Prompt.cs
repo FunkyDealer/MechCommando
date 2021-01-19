@@ -7,14 +7,14 @@ public class Hud_Prompt : Base_Hud
        
     protected override void Awake()
     {
-        base.Awake();
         PlayerMovementManager.onPromptUpdate += GetPrompt;
+        base.Awake();        
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-
+        base.Start();        
     }
 
     void OnDestroy()

@@ -62,7 +62,7 @@ public class Rifle : MainWeapon, IMainWeapon
 
     }
 
-    private void PrimaryFire()
+    protected override void PrimaryFire()
     {
         if (!overHeated && canFirePrimary && manager.currentPrimaryAmmo > 0)
         {
@@ -74,8 +74,7 @@ public class Rifle : MainWeapon, IMainWeapon
             heatUp();
             anim.CrossFadeInFixedTime("Shooting", 0f);
             //anim.SetTrigger("Shoot");
-            shotSound.Play();
-            
+            shotSound.Play();            
 
             foreach (Transform s in ShootPlaces)
             {
@@ -86,6 +85,8 @@ public class Rifle : MainWeapon, IMainWeapon
                 g.damage = baseDamage;
                 g.shooter = manager.GetPlayer;
             }
+
+            base.PrimaryFire();
         }
     }
 

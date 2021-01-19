@@ -14,7 +14,7 @@ public class Base_Hud : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         
     }

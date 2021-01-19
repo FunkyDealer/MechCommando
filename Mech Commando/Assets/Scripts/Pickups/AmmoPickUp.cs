@@ -22,7 +22,7 @@ public class AmmoPickUp : MonoBehaviour
         {
             WeaponManager wp = other.gameObject.GetComponent<WeaponManager>();
             MainWeapon mw = wp.GetCurrentPrimary();
-            if (!mw.isInfinite)
+            if (!mw.isInfinite && wp.currentPrimaryAmmo < mw.GetMaxAmmo())
             {
                 wp.receiveAmmo(ammount);
                 pickUpSound.gameObject.transform.parent = null;

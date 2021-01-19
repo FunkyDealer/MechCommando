@@ -10,14 +10,16 @@ public class Hud_Health : Base_Hud
 
     protected override void Awake()
     {
-        base.Awake();
         Player.onHealthUpdate += GetHealth;
+        base.Awake();
+        
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        
+        base.Start();
+       
     }
 
     void OnDestroy()

@@ -6,16 +6,18 @@ public class Hud_OverHeat : Base_Hud
 {
     protected override void Awake()
     {
+        WeaponManager.onHeatUpdate += GetHeat;
         base.Awake();
-       WeaponManager.onHeatUpdate += GetHeat;
+      
     }
     void OnDestroy()
     {
         WeaponManager.onHeatUpdate -= GetHeat;
     }
-    void Start()
+    protected override void Start()
     {
-
+        base.Start();
+        
     }
     void Update()
     {
