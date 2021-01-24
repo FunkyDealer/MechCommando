@@ -45,7 +45,6 @@ public class SuicideDrone : Enemy
         DTAction _MOVEINTOPOSITION = new DTAction(() => changeState(SD_State.Moving));
         DTAction _EXPLODE = new DTAction(() => Explode());
 
-
         initiateCon = new DTCondition(() => checkForInitiation(), _SEEK, _IDLE);
         moveCon = new DTCondition(() => checkForSeek(), _MOVEINTOPOSITION, _SEEK);
         initiateConShot = new DTCondition(() => checkForSeek(), _MOVEINTOPOSITION, _SEEK);

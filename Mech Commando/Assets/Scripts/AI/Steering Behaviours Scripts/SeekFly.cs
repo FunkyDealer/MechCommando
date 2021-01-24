@@ -19,7 +19,6 @@ public class SeekFly : SteeringBehaviour
         
         //direction.Normalize();
 
-
         Steering steering = new Steering();
         steering.linear = direction * maxAccel;
         steering.dir = lookDir;

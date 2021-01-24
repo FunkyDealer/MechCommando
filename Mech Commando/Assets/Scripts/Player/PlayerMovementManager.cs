@@ -61,7 +61,8 @@ public class PlayerMovementManager : MonoBehaviour
     public static event UpdatePromptEvent onPromptUpdate;
 
     bool walking;
-    Animator animator;
+    [SerializeField]
+    Animator runningAnimator;
 
 
 
@@ -81,10 +82,8 @@ public class PlayerMovementManager : MonoBehaviour
 
         slidingDir_ = Vector3.zero;
         sliding = false;
-        walking = false;
+        walking = false;      
 
-        animator = GetComponentInChildren<Animator>();
-        AnimateWalking();
     }
 
 
@@ -92,6 +91,8 @@ public class PlayerMovementManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AnimateWalking();
+
         originalRotation = transform.localRotation;
         currentSpeed = runSpeed;
         dir = Vector3.zero;
@@ -118,7 +119,6 @@ public class PlayerMovementManager : MonoBehaviour
                 canDodge = true;
             }
 
-
             if (player.inControl)
             {
                 CheckInteract();
@@ -140,9 +140,7 @@ public class PlayerMovementManager : MonoBehaviour
         if (dodging) //Dodging
         {
             Dodge();
-        }
-
-       
+        }       
     }
 
     void Interact()
@@ -181,7 +179,7 @@ public class PlayerMovementManager : MonoBehaviour
 
     void AnimateWalking()
     {
-        animator.SetBool("Walking", walking);
+        runningAnimator.SetBool("Walking", walking);
     }
 
     void CheckInteract()
@@ -233,7 +231,6 @@ public class PlayerMovementManager : MonoBehaviour
             }
         }
     }
-
 
     void Movement()
     {

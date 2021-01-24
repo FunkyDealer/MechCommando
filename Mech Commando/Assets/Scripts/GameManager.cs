@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         p = transform.parent.gameObject.GetComponent<Player>();
+
     }
 
     void OnDestroy()

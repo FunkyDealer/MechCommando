@@ -68,6 +68,9 @@ public class Player : MovingEntity
 
     bool criticalDamage;
 
+    [SerializeField]
+    GameObject FreeCam;
+
     protected override void Awake()
     {
         alive = true;
@@ -112,6 +115,18 @@ public class Player : MovingEntity
                 useHealthPack();
             }
             PlayableArea();
+
+            if (Input.GetButtonDown("FreeCam"))
+            {
+
+                Transform gameManager = transform.Find("GameManager");
+                Transform camTrans = transform.Find("Main Camera");
+                GameObject o = Instantiate(FreeCam, camTrans.position, camTrans.rotation);
+                gameManager.parent = o.transform;
+
+                onDeath();
+                Destroy(this.gameObject);
+            }
         }
     }
 

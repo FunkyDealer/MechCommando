@@ -54,20 +54,9 @@ public class PlayerCamera : MonoBehaviour
             rotArrayY = rotationY;
             rotArrayX = rotationX;
 
-            //Debug.Log(rotArrayY);
-
-            //if (rotArrayY > 89) rotArrayY = 89;
-            //else if (rotArrayY < -89) rotArrayY = -89;
-
-
-
-
-
             //Adding up all the rotational input values from each array
-
             rotAverageY += rotArrayY;
             rotAverageX += rotArrayX;
-
 
             //Get the rotation you will be at next as a Quaternion
             Quaternion yQuaternion = Quaternion.AngleAxis(rotAverageY, Vector3.left);

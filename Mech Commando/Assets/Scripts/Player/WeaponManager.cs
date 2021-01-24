@@ -212,9 +212,9 @@ public class WeaponManager : MonoBehaviour
         //a.transform.parent = weaponPlace;
         currentPrimary = a.GetComponent<MainWeapon>();
         a.transform.localPosition = Vector3.zero;
-        a.transform.localRotation = Quaternion.identity;
+        a.transform.localRotation = Quaternion.identity;       
 
         currentPrimaryAmmo = currentPrimary.GetMaxAmmo();
-
+        updateAmmo();
     }
 }

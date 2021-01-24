@@ -55,7 +55,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MechSoundManager.cs" />
      <Compile Include="Assets\Scripts\AI\AIMovementManager.cs" />
      <Compile Include="Assets\Scripts\AI\BehaviourAndWeight.cs" />
      <Compile Include="Assets\Scripts\AI\Decision Tree\DTAction.cs" />
@@ -83,7 +82,6 @@
      <Compile Include="Assets\Scripts\Destroyable Objets\AntiAirGun.cs" />
      <Compile Include="Assets\Scripts\EffectController.cs" />
      <Compile Include="Assets\Scripts\EndLevelTrigger.cs" />
-     <Compile Include="Assets\Scripts\Enemies\Drone.cs" />
      <Compile Include="Assets\Scripts\Enemies\SuicideDrone.cs" />
      <Compile Include="Assets\Scripts\Enemies\Walker.cs" />
      <Compile Include="Assets\Scripts\EnemyGateInv.cs" />
@@ -92,6 +90,7 @@
      <Compile Include="Assets\Scripts\EnityTypes\Entity.cs" />
      <Compile Include="Assets\Scripts\EnityTypes\MovingEntity.cs" />
      <Compile Include="Assets\Scripts\EnityTypes\StaticEntity.cs" />
+     <Compile Include="Assets\Scripts\FreeCamera 1\FreeCameraController.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\HUD\Base_Hud.cs" />
      <Compile Include="Assets\Scripts\HUD\Hud_Ammo.cs" />
@@ -118,6 +117,7 @@
      <Compile Include="Assets\Scripts\LimitingArea.cs" />
      <Compile Include="Assets\Scripts\LocalObjectiveManager.cs" />
      <Compile Include="Assets\Scripts\MechHead.cs" />
+     <Compile Include="Assets\Scripts\MechSoundManager.cs" />
      <Compile Include="Assets\Scripts\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Menus\M_Option.cs" />
      <Compile Include="Assets\Scripts\Menus\MenuCamera.cs" />

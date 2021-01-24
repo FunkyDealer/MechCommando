@@ -1138,6 +1138,7 @@ MonoBehaviour:
     type: 3}
   HurtHud: {fileID: 5826344426561313312, guid: dc3effe188b2daf4599ef0bc2c39987f, type: 3}
   MechSounds: {fileID: 5291638027066196770}
+  FreeCam: {fileID: 7919427394241298481, guid: efb6e6c2e841e1a4abcbe254bd86da87, type: 3}
 --- !u!114 &6559262581109629948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1158,6 +1159,7 @@ MonoBehaviour:
   dodgeSpeed: 500
   slopeForceRayLenght: 1
   slopeForce: 1
+  runningAnimator: {fileID: 7040193574921878242}
 --- !u!114 &2548768940764443474
 MonoBehaviour:
   m_ObjectHideFlags: 0

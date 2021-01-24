@@ -11,7 +11,6 @@ public class PFNode : MonoBehaviour
     public Dictionary<PFNode,int> hConnections;
 
     EnemyManager manager;
-
     
     MovementInfo info;
     public MovementInfo GetInfo => info;
