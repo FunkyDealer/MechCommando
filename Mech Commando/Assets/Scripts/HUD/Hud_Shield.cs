@@ -6,19 +6,19 @@ using UnityEngine.UI;
 public class Hud_Shield : Base_Hud
 {
     int Shield;
-       
+
     protected override void Awake()
     {
         Player.onShieldUpdate += GetShield;
         base.Awake();
-        
+
     }
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        
+
     }
 
     void OnDestroy()
@@ -34,7 +34,10 @@ public class Hud_Shield : Base_Hud
 
     void GetShield(int S, int maxShield)
     {
-        Shield = S;
-        textDisplay.text = $"{text}: {Shield}/{maxShield}";
+        if (this != null)
+        {
+            Shield = S;
+            textDisplay.text = $"{text}: {Shield}/{maxShield}";
+        }
     }
 }

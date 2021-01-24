@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Hud_NanopakDisplayManager : MonoBehaviour
@@ -17,26 +15,36 @@ public class Hud_NanopakDisplayManager : MonoBehaviour
         }
         Player.onNanopakUpdate += updateNanoPak;
     }
-
-
-    // Start is called before the first frame update
-    protected void Start()
+    void Start()
     {
-               
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void updateNanoPak(int n)
     {
-        for (int i = 0; i < 3; i++)
+        if (this != null)
         {
-            if (i <= n-1) nanoPakDisplays[i].enabled = true;
-            else nanoPakDisplays[i].enabled = false;
+            for (int i = 0; i < 3; i++)
+            {
+
+                if (i <= n - 1) nanoPakDisplays[i].enabled = true;
+                else nanoPakDisplays[i].enabled = false;
+                //try
+                //{
+                //}
+                //catch (MissingReferenceException)
+                //{
+                //    Execption(i);
+                //}
+            }
         }
     }
+
+ 
 }

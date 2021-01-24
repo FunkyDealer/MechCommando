@@ -78,6 +78,7 @@ public class EnemyManager : MonoBehaviour
 
     PFNode ClosestNode(MovementInfo actor)
     {
+        
         PFNode closestNode = null;
         Vector3 actorPos = Vector3.zero;
         try
@@ -92,8 +93,11 @@ public class EnemyManager : MonoBehaviour
 
         foreach (var n in pathFindingNodes)
         {
-            float distance = Vector3.Distance(actorPos, n.transform.position);
-            if (distance < currentMinDistance) { currentMinDistance = distance; closestNode = n; };
+            if (n != null)
+            {
+                float distance = Vector3.Distance(actorPos, n.transform.position);
+                if (distance < currentMinDistance) { currentMinDistance = distance; closestNode = n; };
+            }
         }
 
         if (closestNode == null) throw new System.Exception($"CLOSEST NODE WAS NULL");
